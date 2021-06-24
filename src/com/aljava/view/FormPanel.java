@@ -31,6 +31,7 @@ public class FormPanel extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        fecharJalena = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -48,6 +49,7 @@ public class FormPanel extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(180, 90, 0, 0));
         setIconImages(null);
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -56,15 +58,28 @@ public class FormPanel extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(50, 156, 155));
 
+        fecharJalena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_cancel_24px.png"))); // NOI18N
+        fecharJalena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fecharJalenaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 990, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(956, Short.MAX_VALUE)
+                .addComponent(fecharJalena)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(fecharJalena)
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 40));
@@ -257,10 +272,12 @@ public class FormPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*Botão para sair do sistema, o sistema encerra direto!*/
     private void closeSystemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeSystemMouseClicked
         System.exit(0);
     }//GEN-LAST:event_closeSystemMouseClicked
-
+    
+    /*Abre a janela de clientes*/
     private void panelClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelClienteMouseClicked
         panelCliente.setBackground(new java.awt.Color(44, 59, 66));//44,59,66 
         panelPrincipal.setBackground(new java.awt.Color(29, 30, 31));//29,30,31
@@ -274,6 +291,7 @@ public class FormPanel extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_panelClienteMouseClicked
 
+    /*Muda a cor da barra do menu que foi clicando(Principal)*/
     private void panelPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelPrincipalMouseClicked
         panelCliente.setBackground(new java.awt.Color(29, 30, 31));//44,59,66 
         panelPrincipal.setBackground(new java.awt.Color(44, 59, 66));//29,30,31
@@ -284,6 +302,7 @@ public class FormPanel extends javax.swing.JFrame {
         panelConfiguracoes.setBackground(new java.awt.Color(29, 30, 31));
     }//GEN-LAST:event_panelPrincipalMouseClicked
 
+    /*Abre a janela de Produtos*/
     private void panelProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelProdutosMouseClicked
         panelCliente.setBackground(new java.awt.Color(29, 30, 31));//44,59,66 
         panelPrincipal.setBackground(new java.awt.Color(29, 30, 31));//29,30,31
@@ -294,6 +313,7 @@ public class FormPanel extends javax.swing.JFrame {
         panelConfiguracoes.setBackground(new java.awt.Color(29, 30, 31));
     }//GEN-LAST:event_panelProdutosMouseClicked
 
+    /*Abre a janela de Estoque*/
     private void panelEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEstoqueMouseClicked
         panelCliente.setBackground(new java.awt.Color(29, 30, 31));//44,59,66 
         panelPrincipal.setBackground(new java.awt.Color(29, 30, 31));//29,30,31
@@ -304,6 +324,7 @@ public class FormPanel extends javax.swing.JFrame {
         panelConfiguracoes.setBackground(new java.awt.Color(29, 30, 31));
     }//GEN-LAST:event_panelEstoqueMouseClicked
 
+    /*Abre a janela de PDV*/
     private void panelPDVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelPDVMouseClicked
         panelCliente.setBackground(new java.awt.Color(29, 30, 31));//44,59,66 
         panelPrincipal.setBackground(new java.awt.Color(29, 30, 31));//29,30,31
@@ -314,6 +335,7 @@ public class FormPanel extends javax.swing.JFrame {
         panelConfiguracoes.setBackground(new java.awt.Color(29, 30, 31));
     }//GEN-LAST:event_panelPDVMouseClicked
 
+    /*Abre a janela de Relatórios*/
     private void panelRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRelatoriosMouseClicked
         panelCliente.setBackground(new java.awt.Color(29, 30, 31));//44,59,66 
         panelPrincipal.setBackground(new java.awt.Color(29, 30, 31));//29,30,31
@@ -324,6 +346,7 @@ public class FormPanel extends javax.swing.JFrame {
         panelConfiguracoes.setBackground(new java.awt.Color(29, 30, 31));
     }//GEN-LAST:event_panelRelatoriosMouseClicked
 
+    /*Abre a janela de configurações*/
     private void panelConfiguracoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelConfiguracoesMouseClicked
         panelCliente.setBackground(new java.awt.Color(29, 30, 31));//44,59,66 
         panelPrincipal.setBackground(new java.awt.Color(29, 30, 31));//29,30,31
@@ -333,6 +356,12 @@ public class FormPanel extends javax.swing.JFrame {
         panelRelatorios.setBackground(new java.awt.Color(29, 30, 31));
         panelConfiguracoes.setBackground(new java.awt.Color(44, 59, 66));
     }//GEN-LAST:event_panelConfiguracoesMouseClicked
+
+    /*Ação para fechar a janela principal*/
+    private void fecharJalenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharJalenaMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_fecharJalenaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -371,6 +400,7 @@ public class FormPanel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel closeSystem;
+    private javax.swing.JLabel fecharJalena;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -12,10 +12,17 @@ import javax.persistence.TypedQuery;
  * @author GERSON
  */
 public class DAO<E> {
+    
+    /*Declarando variavel emf do tipo EntityManagerFactory */
     private static EntityManagerFactory emf;
+    
+    /*Declarando variavel em do tipo EntityManager*/
     private EntityManager em;
+    
+    /*Declaração de classe generica*/
     private Class<E> classe;
     
+    /*Inicialização da EntityManagerFactory onde e passado persistence-unit do arquivo persistence,xml*/
     static {
         try {
             emf = Persistence.createEntityManagerFactory("agendAqui");
@@ -24,34 +31,41 @@ public class DAO<E> {
         }
     }
     
+    /*Metodo construtor padrão*/
     public DAO(){
         this(null);
     }
     
+    /*Metodo construtor de classe*/
     public DAO(Class<E> classe){
         this.classe = classe;
         em = emf.createEntityManager();
     }
     
+    /*Metodo para abrir a transição*/
     public DAO<E> abrirT(){
         em.getTransaction().begin();
         return this;
     }
     
+    /*Metodo para fechar a transição*/
     public DAO<E> fecharT(){
         em.getTransaction().commit();
         return this;
     }
     
+    /*Metodo para incluir os dados*/
     public DAO<E> incluir(E entidade){
         em.persist(entidade);
         return this;
     }
     
+    /*Metodo para incluir dados utilizando todos os metodos já criando, fazendo assim um metodo atomico que faz tudo*/
     public DAO<E> incluirAll(E entidade){
         return this.abrirT().incluir(entidade).fecharT();
     }
     
+    /*Metodo lista todos os cliente onde pode ser passado quantidade maxima de resultados e o deslocamento destes resultados.*/
     public List<E> obterTodos(int qte, int deslocamento){
         if(classe == null){
             throw new UnsupportedOperationException("Classe Nula!");
@@ -63,7 +77,7 @@ public class DAO<E> {
         query.setFirstResult(deslocamento);
         return query.getResultList();
     }
-    
+    /*Metodo para fechar a EntityManagerFactory*/
     public void fechar(){
         em.close();
     }

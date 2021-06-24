@@ -506,7 +506,9 @@ public class FormClient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
+    /*Ação do botão que fazer o cadastro do cliente no banco de dados*/
     private void buttonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSalvarMouseClicked
+        /*Criação do objeto cliente*/
         Client  cliente = new Client(
                 textNome.getText(),
                 textCPF.getText(),
@@ -519,10 +521,12 @@ public class FormClient extends javax.swing.JFrame {
                 Integer.parseInt(textNumero.getText())
         );
         
+        /*Criação do objeto DAO para fazer a inserção dos dados no banco.*/
         DAO<Client> dao = new DAO<>(Client.class);
-        dao.abrirT().incluir(cliente).fecharT().fechar();
+        dao.abrirT().incluir(cliente).fecharT().fechar();/*Sequencia de metodos onde faz abertura da transição, inclui o cliente, depois fecha a transição e por fim fecha a entityManage*/
     }//GEN-LAST:event_buttonSalvarMouseClicked
 
+    /*Botão que lima todos os dados do formulario*/
     private void buttonLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLimparMouseClicked
         // TODO add your handling code here:
         

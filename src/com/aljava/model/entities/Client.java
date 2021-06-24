@@ -10,39 +10,77 @@ import javax.persistence.Id;
 
 @Entity
 public class Client {
-    @Id
+    
+    /*
+        - anotation @Id indentifica qual campo vai corresponder ao id da tabela;
+        - anotation @GeneratedValeu vai gerar o valor do campo id de forma auto_increment;
+    */
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
+    /*
+        anotation @Column vai criar o campo do tipo name, tamanho de 100 e podendo ser nulo;
+    */
     @Column(name = "name", length = 100, nullable = true)
     private String nome;
     
+    /*
+        anotation @Column vai criar o campo do tipo cpf, tamanho de 100 e podendo não ser nulo;
+    */
     @Column(name = "cpf", length = 100, nullable = false)
     private String cpf;
     
+    /*
+        anotation @Column vai criar o campo do tipo rg, tamanho de 100 e podendo ser nulo;
+    */
     @Column(name = "rg", length = 100, nullable = true)
     private String rg;
     
+    /*
+        anotation @Column vai criar o campo do tipo email, tamanho de 80 e podendo ser nulo;
+    */
     @Column(name = "email", length = 80, nullable = false)
     private String email;
     
+    /*
+        anotation @Column vai criar o campo do tipo address, tamanho de 100 e podendo ser nulo;
+    */
     @Column(name = "address", length = 100, nullable = true)
     private String endereco;
     
+    /*
+        anotation @Column vai criar o campo do tipo city, tamanho de 40 e podendo ser nulo;
+    */
     @Column(name = "city", length = 40, nullable = true)
     private String cidade;
     
+    /*
+        anotation @Column vai criar o campo do tipo uf, tamanho de 2 e podendo ser nulo;
+    */
     @Column(name = "uf", length = 2, nullable = true)
     private String uf;
     
+    /*
+        anotation @Column vai criar o campo do tipo district, tamanho de 30 e podendo ser nulo;
+    */
     @Column(name = "district", length = 30, nullable = true)
     private String bairro;
     
+    /*
+        anotation @Column vai criar o campo do tipo numHouse, tamanho de 11 e podendo ser nulo;
+    */
     @Column(name = "numHouse", length = 11, nullable = true)
     private int numeroCasa;
 
+    /*
+        Metodo construtor padrão da classe
+    */
     public Client(){}
     
+    /*
+        Metodo construtor com as informações do objeto a serem informados.
+    */
     public Client(String nome, String cpf, String rg, String email, String endereco, String cidade, String uf, String bairro, int numeroCasa) {
         this.nome = nome;
         this.cpf = cpf;
