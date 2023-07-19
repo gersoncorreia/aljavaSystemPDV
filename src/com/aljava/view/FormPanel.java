@@ -47,7 +47,7 @@ public class FormPanel extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBounds(new java.awt.Rectangle(180, 90, 0, 0));
+        setBounds(new java.awt.Rectangle(150, 40, 0, 0));
         setIconImages(null);
         setUndecorated(true);
         setResizable(false);
