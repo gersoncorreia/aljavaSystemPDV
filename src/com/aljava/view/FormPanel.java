@@ -47,7 +47,7 @@ public class FormPanel extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBounds(new java.awt.Rectangle(150, 40, 0, 0));
+        setBounds(new java.awt.Rectangle(180, 90, 0, 0));
         setIconImages(null);
         setUndecorated(true);
         setResizable(false);
@@ -333,6 +333,9 @@ public class FormPanel extends javax.swing.JFrame {
         panelEstoque.setBackground(new java.awt.Color(29, 30, 31));
         panelRelatorios.setBackground(new java.awt.Color(29, 30, 31));
         panelConfiguracoes.setBackground(new java.awt.Color(29, 30, 31));
+        
+        FormVendas tela = new FormVendas();
+        tela.setVisible(true);
     }//GEN-LAST:event_panelPDVMouseClicked
 
     /*Abre a janela de Relatórios*/
@@ -388,6 +391,9 @@ public class FormPanel extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FormPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
