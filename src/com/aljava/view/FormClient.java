@@ -73,6 +73,7 @@ public class FormClient extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Clientes");
         setBounds(new java.awt.Rectangle(170, 40, 0, 0));
         setIconImages(null);
         setResizable(false);

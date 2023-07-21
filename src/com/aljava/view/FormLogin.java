@@ -44,6 +44,7 @@ public class FormLogin extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Login");
         setBounds(new java.awt.Rectangle(350, 180, 0, 0));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,7 +99,6 @@ public class FormLogin extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_password_26px.png"))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(50, 156, 155));
         jButton1.setText("Entrar");
