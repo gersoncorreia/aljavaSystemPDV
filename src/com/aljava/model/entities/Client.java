@@ -44,6 +44,12 @@ public class Client {
     private String email;
     
     /*
+        anotation @Column vai criar o campo do tipo email, tamanho de 80 e podendo ser nulo;
+    */
+    @Column(name = "phone", length = 18, nullable = true)
+    private String telefone;
+    
+    /*
         anotation @Column vai criar o campo do tipo address, tamanho de 100 e podendo ser nulo;
     */
     @Column(name = "address", length = 100, nullable = true)
@@ -81,11 +87,12 @@ public class Client {
     /*
         Metodo construtor com as informações do objeto a serem informados.
     */
-    public Client(String nome, String cpf, String rg, String email, String endereco, String cidade, String uf, String bairro, int numeroCasa) {
+    public Client(String nome, String cpf, String rg, String email, String telefone, String endereco, String cidade, String uf, String bairro, int numeroCasa) {
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
         this.email = email;
+        this.telefone = telefone;
         this.endereco = endereco;
         this.cidade = cidade;
         this.uf = uf;
@@ -131,6 +138,14 @@ public class Client {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public void setTelefone(String telefone){
+        this.telefone = telefone;
+    }
+    
+    public String getTelefone(){
+        return telefone;
     }
 
     public String getEndereco() {
