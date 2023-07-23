@@ -5,10 +5,14 @@
  */
 package com.aljava.view;
 
+import com.aljava.classes.ClienteDAO;
 import com.aljava.classes.DAO;
 import com.aljava.model.entities.Client;
+import com.aljava.model.entities.Utilitarios;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,12 +32,14 @@ public class FormClient extends javax.swing.JFrame {
         DAO<Client> dao = new DAO<>(Client.class);
         List<Client> clientes = dao.obterTodos(5, 0);
         DefaultTableModel dados = (DefaultTableModel)tbClientes.getModel();
+        dados.setRowCount(0);
         for(Client cliente: clientes){
             dados.addRow(new Object[]{
                 cliente.getId(),
                 cliente.getNome(),
-                cliente.getEmail(),
-                cliente.getTelefone(),                
+                cliente.getCpf(),                
+                cliente.getEmail(),                
+                cliente.getTelefone(),                                    
             });
         }
     }
@@ -85,7 +91,7 @@ public class FormClient extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tbClientes = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
 
@@ -95,6 +101,9 @@ public class FormClient extends javax.swing.JFrame {
         setIconImages(null);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 listaClientes(evt);
             }
@@ -124,7 +133,7 @@ public class FormClient extends javax.swing.JFrame {
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addContainerGap(577, Short.MAX_VALUE))
+                .addContainerGap(607, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +147,7 @@ public class FormClient extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 120));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 120));
 
         panelGeral.setForeground(new java.awt.Color(50, 138, 138));
         panelGeral.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -323,7 +332,6 @@ public class FormClient extends javax.swing.JFrame {
             }
         });
 
-        textCodigo.setBackground(new java.awt.Color(255, 255, 255));
         textCodigo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         textCodigo.setForeground(new java.awt.Color(255, 255, 255));
         textCodigo.setBorder(null);
@@ -400,7 +408,7 @@ public class FormClient extends javax.swing.JFrame {
                         .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         panelDadosPessoaisLayout.setVerticalGroup(
             panelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,9 +475,6 @@ public class FormClient extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_search_24px.png"))); // NOI18N
         jButton1.setText("Buscar");
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(50, 138, 138)));
-
         tbClientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tbClientes.setForeground(new java.awt.Color(50, 138, 138));
         tbClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -477,9 +482,21 @@ public class FormClient extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "E-mail", "Telefone"
+                "Código", "Nome", "CPF", "E-mail", "Telefone"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbClientes.setAlignmentX(1.0F);
+        tbClientes.setAlignmentY(1.0F);
+        tbClientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tbClientes.setColumnSelectionAllowed(true);
         tbClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbClientes.setGridColor(new java.awt.Color(255, 255, 255));
         tbClientes.setSelectionBackground(new java.awt.Color(50, 138, 138));
@@ -488,7 +505,25 @@ public class FormClient extends javax.swing.JFrame {
                 tbClientesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbClientes);
+        jScrollPane2.setViewportView(tbClientes);
+        tbClientes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tbClientes.getColumnModel().getColumnCount() > 0) {
+            tbClientes.getColumnModel().getColumn(0).setMinWidth(45);
+            tbClientes.getColumnModel().getColumn(0).setPreferredWidth(45);
+            tbClientes.getColumnModel().getColumn(0).setMaxWidth(60);
+            tbClientes.getColumnModel().getColumn(1).setMinWidth(150);
+            tbClientes.getColumnModel().getColumn(1).setPreferredWidth(45);
+            tbClientes.getColumnModel().getColumn(1).setMaxWidth(400);
+            tbClientes.getColumnModel().getColumn(2).setMinWidth(90);
+            tbClientes.getColumnModel().getColumn(2).setPreferredWidth(45);
+            tbClientes.getColumnModel().getColumn(2).setMaxWidth(110);
+            tbClientes.getColumnModel().getColumn(3).setMinWidth(100);
+            tbClientes.getColumnModel().getColumn(3).setPreferredWidth(45);
+            tbClientes.getColumnModel().getColumn(3).setMaxWidth(250);
+            tbClientes.getColumnModel().getColumn(4).setMinWidth(100);
+            tbClientes.getColumnModel().getColumn(4).setPreferredWidth(45);
+            tbClientes.getColumnModel().getColumn(4).setMaxWidth(150);
+        }
 
         javax.swing.GroupLayout panelListaClientesLayout = new javax.swing.GroupLayout(panelListaClientes);
         panelListaClientes.setLayout(panelListaClientesLayout);
@@ -501,10 +536,10 @@ public class FormClient extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(456, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListaClientesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelListaClientesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelListaClientesLayout.setVerticalGroup(
@@ -516,20 +551,20 @@ public class FormClient extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         panelGeral.addTab("Pesquisar Cliente", panelListaClientes);
 
-        jPanel1.add(panelGeral, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 920, 410));
+        jPanel1.add(panelGeral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 980, 410));
 
         jLabel15.setFont(new java.awt.Font("Montserrat", 0, 11)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(102, 102, 102));
         jLabel15.setText("Desenvolvido por ALJAVATECH - Todos os direitos resevados - 2021");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 610, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 650));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 650));
 
         pack();
         setLocationRelativeTo(null);
@@ -561,26 +596,24 @@ public class FormClient extends javax.swing.JFrame {
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
         // TODO add your handling code here:
-       
-        /*Criação do objeto cliente*/
-//        Client cliente = new Client(
-//                textNome.getText(),
-//                textCPF.getText(),
-//                textRG.getText(),
-//                textEmail.getText(),
-//                textTelefone.getText(),
-//                textEndereco.getText(),
-//                textCidade.getSelectedItem().toString(),
-//                textUf.getSelectedItem().toString(),
-//                textBairro.getText(),
-//                Integer.parseInt(textNumero.getText())
-//        );
-//
-//        /*Criação do objeto DAO para fazer a inserção dos dados no banco.*/
-//        DAO<Client> dao = new DAO<>(Client.class);
-//        dao.abrirT().incluir(cliente).fecharT().fechar();/*Sequencia de metodos onde faz abertura da transição, inclui o cliente, depois fecha a transição e por fim fecha a entityManage*/
-//        
-//        JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!!");
+
+        /*Criação do objeto DAO para fazer atualização dos dados no banco.*/
+        ClienteDAO dao =  new ClienteDAO();
+        Client client = dao.obterId(Integer.parseInt(textCodigo.getText()));
+        client.setNome(textNome.getText());
+        client.setCpf(textCPF.getText());
+        client.setRg(textRG.getText());
+        client.setEmail(textEmail.getText());
+        client.setTelefone(textTelefone.getText());
+        client.setEndereco(textEndereco.getText());
+        client.setBairro(textBairro.getText());
+        client.setNumeroCasa(Integer.parseInt(textNumero.getText()));
+        client.setCidade(textCidade.getSelectedItem().toString());
+        client.setUf(textUf.getSelectedItem().toString());
+        dao.abrirT().atualizar(client).fecharT().fechar();/*Sequencia de metodos onde faz abertura da transição, inclui o cliente, depois fecha a transição e por fim fecha a entityManage*/
+        
+        JOptionPane.showMessageDialog(null, "Cadastro atualizad com sucesso!!");
+        new Utilitarios().limpaTela(panelDadosPessoais);
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     /*Ação do botão que fazer o cadastro do cliente no banco de dados*/
@@ -604,60 +637,55 @@ public class FormClient extends javax.swing.JFrame {
         dao.abrirT().incluir(cliente).fecharT().fechar();/*Sequencia de metodos onde faz abertura da transição, inclui o cliente, depois fecha a transição e por fim fecha a entityManage*/
         
         JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!!");
-        
-        textNome.setText(null);
-        textCPF.setText(null);
-        textRG.setText(null);
-        textEmail.setText(null);
-        textCelular.setText(null);
-        textTelefone.setText(null);
-        textEndereco.setText(null);
-        textBairro.setText(null);
-        textNumero.setText(null);
-        textUf.setSelectedItem(null);
-        textCidade.setSelectedItem(null);
+        new Utilitarios().limpaTela(panelDadosPessoais);
     }//GEN-LAST:event_buttonSalvarMouseClicked
 
     /*Botão que lima todos os dados do formulario*/
     private void buttonLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLimparMouseClicked
         // TODO add your handling code here:
-
-        textNome.setText(null);
-        textCPF.setText(null);
-        textRG.setText(null);
-        textEmail.setText(null);
-        textCelular.setText(null);
-        textTelefone.setText(null);
-        textEndereco.setText(null);
-        textBairro.setText(null);
-        textNumero.setText(null);
-        textUf.setSelectedItem(null);
-        textCidade.setSelectedItem(null);
+        new Utilitarios().limpaTela(panelDadosPessoais);
     }//GEN-LAST:event_buttonLimparMouseClicked
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         // TODO add your handling code here:
+        ClienteDAO dao =  new ClienteDAO();
+        Client client = dao.obterId(Integer.parseInt(textCodigo.getText()));
+        dao.abrirT().delete(client).fecharT().fechar();
+        JOptionPane.showMessageDialog(null, "Dados removidos com sucesso!!");
+        new Utilitarios().limpaTela(panelDadosPessoais);
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void listaClientes(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_listaClientes
         // TODO add your handling code here:
-        listarClientes();
     }//GEN-LAST:event_listaClientes
 
     private void tbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClientesMouseClicked
         // TODO add your handling code here:
         panelGeral.setSelectedIndex(0);
-        System.out.println(textCodigo.getText());
-        DAO<Client> dao = new DAO<>(Client.class);
-        
-//       dao.obterId(Integer.parseInt(tbClientes.getValueAt(tbClientes.getSelectedRow(), 0).toString()));
-        System.out.println(dao.obterId( Integer.parseInt(tbClientes.getValueAt(tbClientes.getSelectedRow(), 0).toString())));
-    
+        new Utilitarios().limpaTela(panelDadosPessoais);
+        ClienteDAO dao =  new ClienteDAO();
+        Client client = dao.obterId(Integer.parseInt(tbClientes.getValueAt(tbClientes.getSelectedRow(), 0).toString()));
+        textCodigo.setText( Integer.toString(client.getId()));
+        textNome.setText(client.getNome());
+        textCPF.setText(client.getCpf());
+        textRG.setText(client.getRg());
+        textEmail.setText(client.getEmail());
+        textTelefone.setText(client.getTelefone());
+        textEndereco.setText(client.getEndereco());
+        textBairro.setText(client.getBairro());
+        textNumero.setText(Integer.toString(client.getNumeroCasa()));
+        textCidade.setSelectedItem(client.getCidade());
+        textUf.setSelectedItem(client.getUf());
     }//GEN-LAST:event_tbClientesMouseClicked
 
     private void textCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textCodigoActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        listarClientes();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -718,7 +746,7 @@ public class FormClient extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panelDadosPessoais;
     public javax.swing.JTabbedPane panelGeral;

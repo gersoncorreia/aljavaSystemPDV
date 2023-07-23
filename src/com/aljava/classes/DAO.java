@@ -66,6 +66,7 @@ public class DAO<E> {
 
     /*Metodo para atualiza dados utilizando todos os metodos já criando, fazendo assim um metodo atomico que faz tudo*/
     public DAO<E> atualizar(E entidade) {
+        em.detach(entidade);
         em.merge(entidade);
         return this;
     }
@@ -89,8 +90,13 @@ public class DAO<E> {
     }
 
     /*Metodo para atualiza dados utilizando todos os metodos já criando, fazendo assim um metodo atomico que faz tudo*/
-    public DAO<E> obterId(int id) {
-        em.find(classe, id);
+    public E obterId(int id) {
+//        long l =  Long.parseLong(id);
+        return em.find(classe, id);
+    }
+    /*Metodo para atualiza dados utilizando todos os metodos já criando, fazendo assim um metodo atomico que faz tudo*/
+    public DAO<E> delete(E entidade) {
+        em.remove(entidade);
         return this;
     }
 
