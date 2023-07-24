@@ -6,6 +6,11 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Lista de entidades -->
     <class>com.aljava.model.entities.Client</class>
+    <class>com.aljava.model.entities.Product</class>
+    <class>com.aljava.model.entities.Entries</class>
+    <class>com.aljava.model.entities.Payments</class>
+    <class>com.aljava.model.entities.Sales</class>
+    <class>com.aljava.model.entities.SaleItens</class>
     <properties>
       <!-- Propriedades JDBC -->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
@@ -15,7 +20,7 @@
       <!-- Configurações específicas do Hibernate -->
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
-      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.show_sql" value="false"/>
       <property name="hibernate.format_sql" value="true"/>
     </properties>
   </persistence-unit>

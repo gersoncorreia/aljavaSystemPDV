@@ -28,16 +28,16 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuClientes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        menuFornecedores = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        menuProdutos = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        menuVendas = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -63,17 +63,17 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
         jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenu1.setMargin(new java.awt.Insets(3, 10, 3, 10));
 
-        jMenuItem1.setBackground(new java.awt.Color(0, 255, 255));
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/novo.png"))); // NOI18N
-        jMenuItem1.setText("Controle de Clientes");
-        jMenuItem1.setPreferredSize(new java.awt.Dimension(223, 40));
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuClientes.setBackground(new java.awt.Color(0, 255, 255));
+        menuClientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/novo.png"))); // NOI18N
+        menuClientes.setText("Controle de Clientes");
+        menuClientes.setPreferredSize(new java.awt.Dimension(223, 40));
+        menuClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuClientesActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(menuClientes);
 
         jMenuBar1.add(jMenu1);
 
@@ -82,10 +82,15 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenu2.setMargin(new java.awt.Insets(3, 10, 3, 10));
 
-        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/novo.png"))); // NOI18N
-        jMenuItem2.setText("Controle de Fornecedores");
-        jMenu2.add(jMenuItem2);
+        menuFornecedores.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuFornecedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/novo.png"))); // NOI18N
+        menuFornecedores.setText("Controle de Fornecedores");
+        menuFornecedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFornecedoresActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuFornecedores);
 
         jMenuBar1.add(jMenu2);
 
@@ -108,12 +113,18 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/produtos.png"))); // NOI18N
         jMenu7.setText("Produtos");
+        jMenu7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jMenu7.setMargin(new java.awt.Insets(3, 10, 3, 10));
 
-        jMenuItem9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
-        jMenuItem9.setText("Pesquisar Produtos");
-        jMenu7.add(jMenuItem9);
+        menuProdutos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
+        menuProdutos.setText("Pesquisar Produtos");
+        menuProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuProdutosActionPerformed(evt);
+            }
+        });
+        jMenu7.add(menuProdutos);
 
         jMenuItem8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItem8.setText("Controle de Estoque");
@@ -126,14 +137,14 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
         jMenu4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenu4.setMargin(new java.awt.Insets(3, 10, 3, 10));
 
-        jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuItem7.setText("Abrir PDV");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        menuVendas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuVendas.setText("Abrir PDV");
+        menuVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FrmVendas(evt);
             }
         });
-        jMenu4.add(jMenuItem7);
+        jMenu4.add(menuVendas);
 
         jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuItem4.setText("Ponto do Dia");
@@ -191,11 +202,11 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClientesActionPerformed
         // TODO add your handling code here:
         FormClient tela = new FormClient();
         tela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_menuClientesActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
@@ -210,6 +221,17 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
         FormVendas tela = new FormVendas();
         tela.setVisible(true);
     }//GEN-LAST:event_FrmVendas
+
+    private void menuFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFornecedoresActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_menuFornecedoresActionPerformed
+
+    private void menuProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProdutosActionPerformed
+        // TODO add your handling code here:
+        FormProdutos tela = new FormProdutos();
+        tela.setVisible(true);
+    }//GEN-LAST:event_menuProdutosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,14 +277,14 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem menuClientes;
+    private javax.swing.JMenuItem menuFornecedores;
+    private javax.swing.JMenuItem menuProdutos;
+    private javax.swing.JMenuItem menuVendas;
     // End of variables declaration//GEN-END:variables
 }
