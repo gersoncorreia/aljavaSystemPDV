@@ -31,6 +31,7 @@ public class FormClient extends javax.swing.JFrame {
     public void listarClientes(){
         DAO<Client> dao = new DAO<>(Client.class);
         List<Client> clientes = dao.obterTodos(5, 0);
+        System.out.println(clientes);
         DefaultTableModel dados = (DefaultTableModel)tbClientes.getModel();
         dados.setRowCount(0);
         for(Client cliente: clientes){

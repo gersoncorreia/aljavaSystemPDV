@@ -5,68 +5,78 @@
 package com.aljava.model.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author SEFIN
  */
 @Entity
+@Table(name = "sale_items")
 public class SaleItens implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
-    @Column(name = "sale_item_id", length = 11, nullable = true)
-    private int vendaID;
-    
-    @Column(name = "product_id", length = 11, nullable = true)
-    private int produtoID;
-    
-    @Column(name = "amount", length = 11, nullable = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @OneToOne
+    @JoinColumn(name = "venda_id")
+    private Sales sales;
+
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    private Products products;
+
+    @Column(name = "amount", length = 11, nullable = false)
     private int quantidade;
-    
-    @Column(name = "unitary_price", length = 11, nullable = true)
+
+    @Column(name = "unitary_price", length = 11, nullable = false)
     private double precoUnitario;
+
+    @Column(name = "created_at", nullable = false)
+    private Date dataCadastro;
 
     public SaleItens() {
     }
 
-    public SaleItens(int vendaID, int produtoID, int quantidade, double precoUnitario) {
-        this.vendaID = vendaID;
-        this.produtoID = produtoID;
+    public SaleItens(Sales sales, Products products, int quantidade, double precoUnitario, Date dataCadastro) {
+        this.sales = sales;
+        this.products = products;
         this.quantidade = quantidade;
         this.precoUnitario = precoUnitario;
+        this.dataCadastro = dataCadastro;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getVendaID() {
-        return vendaID;
+    public Sales getSales() {
+        return sales;
     }
 
-    public void setVendaID(int vendaID) {
-        this.vendaID = vendaID;
+    public void setSales(Sales sales) {
+        this.sales = sales;
     }
 
-    public int getProdutoID() {
-        return produtoID;
+    public Products getProducts() {
+        return products;
     }
 
-    public void setProdutoID(int produtoID) {
-        this.produtoID = produtoID;
+    public void setProducts(Products products) {
+        this.products = products;
     }
 
     public int getQuantidade() {
@@ -85,29 +95,12 @@ public class SaleItens implements Serializable {
         this.precoUnitario = precoUnitario;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public Date getDataCadastro() {
+        return dataCadastro;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SaleItens)) {
-            return false;
-        }
-        SaleItens other = (SaleItens) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.aljava.model.entities.SaleItens[ id=" + id + " ]";
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
 }

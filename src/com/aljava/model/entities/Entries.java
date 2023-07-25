@@ -11,43 +11,56 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author SEFIN
  */
 @Entity
+@Table(name = "entries")
 public class Entries implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @Column(name = "date", nullable = true)
     private Date data;
-    
-    @Column(name = "product_id", length = 11, nullable = true)
-    private int productID;
-    
+
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    private Products products;
+
     @Column(name = "amount", length = 11, nullable = true)
     private int quantidade;
 
-    public Entries(){}
-    
-    public Entries(Date data, int productID, int quantidade) {
+    public Entries() {
+    }
+
+    public Entries(Products products, Date data, int quantidade) {
         this.data = data;
-        this.productID = productID;
+        this.products = products;
         this.quantidade = quantidade;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
     }
 
     public Date getData() {
@@ -58,14 +71,6 @@ public class Entries implements Serializable {
         this.data = data;
     }
 
-    public int getProductID() {
-        return productID;
-    }
-
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
-
     public int getQuantidade() {
         return quantidade;
     }
@@ -73,30 +78,4 @@ public class Entries implements Serializable {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Entries)) {
-            return false;
-        }
-        Entries other = (Entries) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.aljava.model.entities.Entries[ id=" + id + " ]";
-    }
-
 }

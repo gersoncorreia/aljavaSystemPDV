@@ -1,4 +1,3 @@
-
 package com.aljava.model.entities;
 
 import javax.persistence.Column;
@@ -6,87 +5,89 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "clients")
 public class Client {
-    
+
     /*
         - anotation @Id indentifica qual campo vai corresponder ao id da tabela;
         - anotation @GeneratedValeu vai gerar o valor do campo id de forma auto_increment;
-    */
-    @Id 
+     */
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     /*
         anotation @Column vai criar o campo do tipo name, tamanho de 100 e podendo ser nulo;
-    */
+     */
     @Column(name = "name", length = 100, nullable = true)
     private String nome;
-    
+
     /*
         anotation @Column vai criar o campo do tipo cpf, tamanho de 100 e podendo não ser nulo;
-    */
+     */
     @Column(name = "cpf", length = 100, nullable = false)
     private String cpf;
-    
+
     /*
         anotation @Column vai criar o campo do tipo rg, tamanho de 100 e podendo ser nulo;
-    */
+     */
     @Column(name = "rg", length = 100, nullable = true)
     private String rg;
-    
+
     /*
         anotation @Column vai criar o campo do tipo email, tamanho de 80 e podendo ser nulo;
-    */
+     */
     @Column(name = "email", length = 80, nullable = false)
     private String email;
-    
+
     /*
         anotation @Column vai criar o campo do tipo email, tamanho de 80 e podendo ser nulo;
-    */
+     */
     @Column(name = "phone", length = 18, nullable = true)
     private String telefone;
-    
+
     /*
         anotation @Column vai criar o campo do tipo address, tamanho de 100 e podendo ser nulo;
-    */
+     */
     @Column(name = "address", length = 100, nullable = true)
     private String endereco;
-    
+
     /*
         anotation @Column vai criar o campo do tipo city, tamanho de 40 e podendo ser nulo;
-    */
+     */
     @Column(name = "city", length = 40, nullable = true)
     private String cidade;
-    
+
     /*
         anotation @Column vai criar o campo do tipo uf, tamanho de 2 e podendo ser nulo;
-    */
+     */
     @Column(name = "uf", length = 2, nullable = true)
     private String uf;
-    
+
     /*
         anotation @Column vai criar o campo do tipo district, tamanho de 30 e podendo ser nulo;
-    */
+     */
     @Column(name = "district", length = 30, nullable = true)
     private String bairro;
-    
+
     /*
         anotation @Column vai criar o campo do tipo numHouse, tamanho de 11 e podendo ser nulo;
-    */
+     */
     @Column(name = "numHouse", length = 11, nullable = true)
     private int numeroCasa;
 
     /*
         Metodo construtor padrão da classe
-    */
-    public Client(){}
-    
+     */
+    public Client() {
+    }
+
     /*
         Metodo construtor com as informações do objeto a serem informados.
-    */
+     */
     public Client(String nome, String cpf, String rg, String email, String telefone, String endereco, String cidade, String uf, String bairro, int numeroCasa) {
         this.nome = nome;
         this.cpf = cpf;
@@ -139,12 +140,12 @@ public class Client {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    public void setTelefone(String telefone){
+
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
-    public String getTelefone(){
+
+    public String getTelefone() {
         return telefone;
     }
 
@@ -187,6 +188,5 @@ public class Client {
     public void setNumeroCasa(int numeroCasa) {
         this.numeroCasa = numeroCasa;
     }
-    
-    
+
 }

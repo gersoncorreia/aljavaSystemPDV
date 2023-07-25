@@ -10,33 +10,47 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author SEFIN
  */
 @Entity
+@Table(name = "payments")
 public class Payments implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
-     @Column(name = "sales_id", length = 11, nullable = true)
-    private int vendaID;
-     
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @OneToOne
+    @JoinColumn(name = "sale_id")
+    private Sales sales;
+
     private String tipoPagamento;
-    
+
     @Column(name = "value", length = 11, nullable = true)
     private double valor;
-    
-    public int getVendaID() {
-        return vendaID;
+
+    public Payments() {
     }
 
-    public void setVendaID(int vendaID) {
-        this.vendaID = vendaID;
+    public Payments(Sales sales, String tipoPagamento, double valor) {
+        super();
+        this.sales = sales;
+        this.tipoPagamento = tipoPagamento;
+        this.valor = valor;
+    }
+
+    public Sales getSales() {
+        return sales;
+    }
+
+    public void setSales(Sales sales) {
+        this.sales = sales;
     }
 
     public String getTipoPagamento() {
@@ -55,38 +69,11 @@ public class Payments implements Serializable {
         this.valor = valor;
     }
 
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Payments)) {
-            return false;
-        }
-        Payments other = (Payments) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.aljava.model.entities.Payments[ id=" + id + " ]";
-    }
-    
 }
