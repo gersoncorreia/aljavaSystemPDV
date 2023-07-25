@@ -1,6 +1,6 @@
 package com.aljava.controllers;
 
-import com.aljava.model.entities.Client;
+import com.aljava.model.entities.Clients;
 
 /**
  *

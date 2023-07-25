@@ -4,15 +4,14 @@
  */
 package com.aljava.classes;
 
-import com.aljava.model.entities.Clients;
+import com.aljava.model.entities.Products;
 
 /**
  *
- * @author Gerson
+ * @author SEFIN
  */
-public class ClienteDAO extends DAO<Clients> {
-
-    public ClienteDAO() {
-        super(Clients.class);
+public class ProdutoDAO extends DAO<Products>{
+    public ProdutoDAO (){
+        super(Products.class);
     }
 }

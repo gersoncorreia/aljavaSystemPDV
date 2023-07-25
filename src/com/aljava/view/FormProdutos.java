@@ -7,7 +7,7 @@ package com.aljava.view;
 
 import com.aljava.classes.ClienteDAO;
 import com.aljava.classes.DAO;
-import com.aljava.model.entities.Client;
+import com.aljava.model.entities.Clients;
 import com.aljava.model.entities.Utilitarios;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -62,7 +62,7 @@ public class FormProdutos extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbClientes = new javax.swing.JTable();
+        tbProdutos = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
 
@@ -134,9 +134,9 @@ public class FormProdutos extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_search_24px.png"))); // NOI18N
         jButton1.setText("Buscar");
 
-        tbClientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tbClientes.setForeground(new java.awt.Color(50, 138, 138));
-        tbClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tbProdutos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tbProdutos.setForeground(new java.awt.Color(50, 138, 138));
+        tbProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -152,39 +152,39 @@ public class FormProdutos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbClientes.setAlignmentX(1.0F);
-        tbClientes.setAlignmentY(1.0F);
-        tbClientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tbClientes.setColumnSelectionAllowed(true);
-        tbClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tbClientes.setGridColor(new java.awt.Color(255, 255, 255));
-        tbClientes.setSelectionBackground(new java.awt.Color(50, 138, 138));
-        tbClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbProdutos.setAlignmentX(1.0F);
+        tbProdutos.setAlignmentY(1.0F);
+        tbProdutos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tbProdutos.setColumnSelectionAllowed(true);
+        tbProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbProdutos.setGridColor(new java.awt.Color(255, 255, 255));
+        tbProdutos.setSelectionBackground(new java.awt.Color(50, 138, 138));
+        tbProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbClientesMouseClicked(evt);
+                tbProdutosMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tbClientes);
-        tbClientes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tbClientes.getColumnModel().getColumnCount() > 0) {
-            tbClientes.getColumnModel().getColumn(0).setMinWidth(45);
-            tbClientes.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tbClientes.getColumnModel().getColumn(0).setMaxWidth(60);
-            tbClientes.getColumnModel().getColumn(1).setMinWidth(100);
-            tbClientes.getColumnModel().getColumn(1).setPreferredWidth(50);
-            tbClientes.getColumnModel().getColumn(1).setMaxWidth(150);
-            tbClientes.getColumnModel().getColumn(2).setMinWidth(150);
-            tbClientes.getColumnModel().getColumn(2).setPreferredWidth(45);
-            tbClientes.getColumnModel().getColumn(2).setMaxWidth(400);
-            tbClientes.getColumnModel().getColumn(3).setMinWidth(100);
-            tbClientes.getColumnModel().getColumn(3).setPreferredWidth(50);
-            tbClientes.getColumnModel().getColumn(3).setMaxWidth(110);
-            tbClientes.getColumnModel().getColumn(4).setMinWidth(70);
-            tbClientes.getColumnModel().getColumn(4).setPreferredWidth(50);
-            tbClientes.getColumnModel().getColumn(4).setMaxWidth(100);
-            tbClientes.getColumnModel().getColumn(5).setMinWidth(100);
-            tbClientes.getColumnModel().getColumn(5).setPreferredWidth(50);
-            tbClientes.getColumnModel().getColumn(5).setMaxWidth(150);
+        jScrollPane2.setViewportView(tbProdutos);
+        tbProdutos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tbProdutos.getColumnModel().getColumnCount() > 0) {
+            tbProdutos.getColumnModel().getColumn(0).setMinWidth(45);
+            tbProdutos.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tbProdutos.getColumnModel().getColumn(0).setMaxWidth(60);
+            tbProdutos.getColumnModel().getColumn(1).setMinWidth(100);
+            tbProdutos.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tbProdutos.getColumnModel().getColumn(1).setMaxWidth(150);
+            tbProdutos.getColumnModel().getColumn(2).setMinWidth(150);
+            tbProdutos.getColumnModel().getColumn(2).setPreferredWidth(45);
+            tbProdutos.getColumnModel().getColumn(2).setMaxWidth(400);
+            tbProdutos.getColumnModel().getColumn(3).setMinWidth(100);
+            tbProdutos.getColumnModel().getColumn(3).setPreferredWidth(50);
+            tbProdutos.getColumnModel().getColumn(3).setMaxWidth(110);
+            tbProdutos.getColumnModel().getColumn(4).setMinWidth(70);
+            tbProdutos.getColumnModel().getColumn(4).setPreferredWidth(50);
+            tbProdutos.getColumnModel().getColumn(4).setMaxWidth(100);
+            tbProdutos.getColumnModel().getColumn(5).setMinWidth(100);
+            tbProdutos.getColumnModel().getColumn(5).setPreferredWidth(50);
+            tbProdutos.getColumnModel().getColumn(5).setMaxWidth(150);
         }
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -251,7 +251,7 @@ public class FormProdutos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_listaClientes
 
-    private void tbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClientesMouseClicked
+    private void tbProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProdutosMouseClicked
         // TODO add your handling code here:
 //        panelGeral.setSelectedIndex(0);
 //        new Utilitarios().limpaTela(panelDadosPessoais);
@@ -268,7 +268,7 @@ public class FormProdutos extends javax.swing.JFrame {
 //        textNumero.setText(Integer.toString(client.getNumeroCasa()));
 //        textCidade.setSelectedItem(client.getCidade());
 //        textUf.setSelectedItem(client.getUf());
-    }//GEN-LAST:event_tbClientesMouseClicked
+    }//GEN-LAST:event_tbProdutosMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -322,8 +322,6 @@ public class FormProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonSalvar;
-    private javax.swing.JButton buttonSalvar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -335,7 +333,7 @@ public class FormProdutos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     public javax.swing.JTabbedPane panelGeral;
     private javax.swing.JPanel panelListaClientes;
-    private javax.swing.JTable tbClientes;
+    private javax.swing.JTable tbProdutos;
     // End of variables declaration//GEN-END:variables
 
 }

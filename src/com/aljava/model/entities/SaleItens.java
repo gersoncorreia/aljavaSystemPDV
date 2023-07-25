@@ -13,14 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  *
  * @author SEFIN
  */
 @Entity
-@Table(name = "sale_items")
 public class SaleItens implements Serializable {
 
     @Id
@@ -32,7 +30,7 @@ public class SaleItens implements Serializable {
     private Sales sales;
 
     @OneToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", unique = true)
     private Products products;
 
     @Column(name = "amount", length = 11, nullable = false)

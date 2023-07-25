@@ -6,13 +6,10 @@
 package com.aljava.view;
 
 import com.aljava.classes.ClienteDAO;
-import com.aljava.classes.DAO;
-import com.aljava.model.entities.Client;
+import com.aljava.model.entities.Clients;
 import com.aljava.model.entities.Utilitarios;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,12 +26,11 @@ public class FormClient extends javax.swing.JFrame {
     }
     
     public void listarClientes(){
-        DAO<Client> dao = new DAO<>(Client.class);
-        List<Client> clientes = dao.obterTodos(5, 0);
-        System.out.println(clientes);
+        ClienteDAO dao = new ClienteDAO();
+        List<Clients> clientes = dao.obterTodos(5, 0);
         DefaultTableModel dados = (DefaultTableModel)tbClientes.getModel();
         dados.setRowCount(0);
-        for(Client cliente: clientes){
+        for(Clients cliente: clientes){
             dados.addRow(new Object[]{
                 cliente.getId(),
                 cliente.getNome(),
@@ -332,6 +328,7 @@ public class FormClient extends javax.swing.JFrame {
             }
         });
 
+        textCodigo.setBackground(new java.awt.Color(255, 255, 255));
         textCodigo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         textCodigo.setForeground(new java.awt.Color(255, 255, 255));
         textCodigo.setBorder(null);
@@ -593,7 +590,7 @@ public class FormClient extends javax.swing.JFrame {
 
         /*Criação do objeto DAO para fazer atualização dos dados no banco.*/
         ClienteDAO dao =  new ClienteDAO();
-        Client client = dao.obterId(Integer.parseInt(textCodigo.getText()));
+        Clients client = dao.obterId(Integer.parseInt(textCodigo.getText()));
         client.setNome(textNome.getText());
         client.setCpf(textCPF.getText());
         client.setRg(textRG.getText());
@@ -613,7 +610,7 @@ public class FormClient extends javax.swing.JFrame {
     /*Ação do botão que fazer o cadastro do cliente no banco de dados*/
     private void buttonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSalvarMouseClicked
         /*Criação do objeto cliente*/
-        Client cliente = new Client(
+        Clients cliente = new Clients(
                 textNome.getText(),
                 textCPF.getText(),
                 textRG.getText(),
@@ -627,7 +624,7 @@ public class FormClient extends javax.swing.JFrame {
         );
 
         /*Criação do objeto DAO para fazer a inserção dos dados no banco.*/
-        DAO<Client> dao = new DAO<>(Client.class);
+        ClienteDAO dao = new ClienteDAO();
         dao.abrirT().incluir(cliente).fecharT().fechar();/*Sequencia de metodos onde faz abertura da transição, inclui o cliente, depois fecha a transição e por fim fecha a entityManage*/
         
         JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!!");
@@ -643,7 +640,7 @@ public class FormClient extends javax.swing.JFrame {
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         // TODO add your handling code here:
         ClienteDAO dao =  new ClienteDAO();
-        Client client = dao.obterId(Integer.parseInt(textCodigo.getText()));
+        Clients client = dao.obterId(Integer.parseInt(textCodigo.getText()));
         dao.abrirT().delete(client).fecharT().fechar();
         JOptionPane.showMessageDialog(null, "Dados removidos com sucesso!!");
         new Utilitarios().limpaTela(panelDadosPessoais);
@@ -658,7 +655,7 @@ public class FormClient extends javax.swing.JFrame {
         panelGeral.setSelectedIndex(0);
         new Utilitarios().limpaTela(panelDadosPessoais);
         ClienteDAO dao =  new ClienteDAO();
-        Client client = dao.obterId(Integer.parseInt(tbClientes.getValueAt(tbClientes.getSelectedRow(), 0).toString()));
+        Clients client = dao.obterId(Integer.parseInt(tbClientes.getValueAt(tbClientes.getSelectedRow(), 0).toString()));
         textCodigo.setText( Integer.toString(client.getId()));
         textNome.setText(client.getNome());
         textCPF.setText(client.getCpf());

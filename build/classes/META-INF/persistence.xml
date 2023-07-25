@@ -5,12 +5,13 @@
     <!-- Implementação do JPA -->
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Lista de entidades -->
-    <class>com.aljava.model.entities.Client</class>
-    <class>com.aljava.model.entities.Product</class>
-    <class>com.aljava.model.entities.Entries</class>
+    <!--    <class>com.aljava.model.entities.Entries</class>
     <class>com.aljava.model.entities.Payments</class>
     <class>com.aljava.model.entities.Sales</class>
     <class>com.aljava.model.entities.SaleItens</class>
+    <class>com.aljava.model.entities.Products</class>-->
+    <class>com.aljava.model.entities.Clients</class>
+    <class>com.aljava.model.entities.Categories</class>
     <properties>
       <!-- Propriedades JDBC -->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

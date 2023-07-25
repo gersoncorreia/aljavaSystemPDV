@@ -10,14 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author SEFIN
  */
 @Entity
-@Table(name = "products")
 public class Products implements Serializable {
 
     @Id
@@ -30,20 +30,27 @@ public class Products implements Serializable {
     @Column(name = "name", length = 100, nullable = true)
     private String nome;
 
-    @Column(name = "price", length = 11, nullable = true)
+    @Column(name="price", columnDefinition="Decimal(10,2)")
     private double preco;
+    
+    
 
     @Column(name = "stock", length = 11, nullable = true)
     private int estoque;
 
+    @OneToOne
+    @JoinColumn(name = "category_id")
+    private Categories categories;
+
     public Products() {
     }
 
-    public Products(String nome, String codigoBarras, double preco, int estoque) {
+    public Products(String nome, String codigoBarras, double preco, int estoque, Categories categories) {
         this.nome = nome;
         this.codigoBarras = codigoBarras;
         this.preco = preco;
         this.estoque = estoque;
+        this.categories = categories;
     }
 
     public int getId() {
@@ -85,4 +92,13 @@ public class Products implements Serializable {
     public void setEstoque(int estoque) {
         this.estoque = estoque;
     }
+
+    public Categories getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Categories categories) {
+        this.categories = categories;
+    }
+
 }

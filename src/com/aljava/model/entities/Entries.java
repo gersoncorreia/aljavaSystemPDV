@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,7 +20,6 @@ import javax.persistence.Table;
  * @author SEFIN
  */
 @Entity
-@Table(name = "entries")
 public class Entries implements Serializable {
 
     @Id
@@ -32,7 +30,7 @@ public class Entries implements Serializable {
     private Date data;
 
     @OneToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", unique = true)
     private Products products;
 
     @Column(name = "amount", length = 11, nullable = true)
