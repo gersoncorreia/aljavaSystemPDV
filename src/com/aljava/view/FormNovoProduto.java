@@ -6,14 +6,16 @@ package com.aljava.view;
 
 import com.aljava.classes.CategoryDAO;
 import com.aljava.classes.DAO;
-import com.aljava.classes.ProdutoDAO;
 import com.aljava.model.entities.Categories;
 import com.aljava.model.entities.Products;
 import com.aljava.model.entities.Utilitarios;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -198,15 +200,20 @@ public class FormNovoProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         Categories categoria = new Categories();
         categoria = (Categories) jComboBoxCategoria.getSelectedItem();
-        DecimalFormat dfPreco = new DecimalFormat("###,###.###");
-        
-        System.out.println(dfPreco.format(txtPreco.getText()));
-        //continuiar daqui!
-//        Products produto = new Products(txtNomeProduto.getText(), txtCodigoBarra.getText(), Double.parseDouble(txtPreco.getText()), Integer.parseInt(txtQtdEstoque.getText()) , categoria);
-//        DAO<Object> dao = new DAO<>();
-//        dao.abrirT().incluir(produto).fecharT().fechar();
-//        JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!!");
-//        new Utilitarios().limpaTela(panelFormProduto);
+
+        String precoFormatado = txtPreco.getText().replace(".", "").replace(",", ".");
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.US);
+        double precoDouble = 0;
+        try {
+            precoDouble = numberFormat.parse(precoFormatado).doubleValue();
+        } catch (ParseException ex) {
+            Logger.getLogger(FormNovoProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Products produto = new Products(txtNomeProduto.getText(), txtCodigoBarra.getText(), precoDouble, Integer.parseInt(txtQtdEstoque.getText()), categoria);
+        DAO<Object> dao = new DAO<>();
+        dao.abrirT().incluir(produto).fecharT().fechar();
+        JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!!");
+        new Utilitarios().limpaTela(panelFormProduto);
 
     }//GEN-LAST:event_buttonSalvarProdutoActionPerformed
 

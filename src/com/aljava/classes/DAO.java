@@ -1,10 +1,19 @@
 package com.aljava.classes;
 
+import com.aljava.model.entities.Products;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -71,12 +80,12 @@ public class DAO<E> {
         return this;
     }
 
-    /*Metodo para atualizar todos dados utilizando todos os metodos já criando, fazendo assim um metodo atomico que faz tudo*/
+    /*Metodo para atualizar varios Objetos de uma vez só fazendo assim um metodo atomico que faz tudo*/
     public DAO<E> atualizarAlll(E entidade) {
         return this.abrirT().atualizar(entidade).fecharT();
     }
 
-    /*Metodo lista todos os cliente onde pode ser passado quantidade maxima de resultados e o deslocamento destes resultados.*/
+    /*Metodo lista todos os Objetos onde pode ser passado quantidade maxima de resultados e o deslocamento destes resultados.*/
     public List<E> obterTodos(int qte, int deslocamento) {
         if (classe == null) {
             throw new UnsupportedOperationException("Classe Nula!");
@@ -89,12 +98,21 @@ public class DAO<E> {
         return query.getResultList();
     }
 
-    /*Metodo para atualiza dados utilizando todos os metodos já criando, fazendo assim um metodo atomico que faz tudo*/
+    /*Metodo para buscar um Objetos por seu ID*/
     public E obterId(int id) {
-//        long l =  Long.parseLong(id);
         return em.find(classe, id);
     }
-    /*Metodo para atualiza dados utilizando todos os metodos já criando, fazendo assim um metodo atomico que faz tudo*/
+
+    public List<E> buscarPorNome(String nome) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<E> query = cb.createQuery(classe);
+        javax.persistence.criteria.Root<E> root = query.from(classe);
+        query.select(root).where(cb.like(root.get("nome"), "%" + nome + "%"));
+        return em.createQuery(query).getResultList();
+    }
+
+    ;
+    /*Metodo para deletar um Objetos do banco de dados.*/
     public DAO<E> delete(E entidade) {
         em.remove(entidade);
         return this;

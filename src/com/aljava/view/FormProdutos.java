@@ -5,14 +5,10 @@
  */
 package com.aljava.view;
 
-import com.aljava.classes.ClienteDAO;
 import com.aljava.classes.DAO;
-import com.aljava.model.entities.Clients;
-import com.aljava.model.entities.Utilitarios;
+import com.aljava.classes.ProductDAO;
+import com.aljava.model.entities.Products;
 import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,22 +23,25 @@ public class FormProdutos extends javax.swing.JFrame {
     public FormProdutos() {
         initComponents();
     }
-    
-//    public void listarClientes(){;
-//        DAO<Client> dao = new DAO<>(Client.class);
-//        List<Client> clientes = dao.obterTodos(5, 0);
-//        DefaultTableModel dados = (DefaultTableModel)tbClientes.getModel();
-//        dados.setRowCount(0);
-//        for(Client cliente: clientes){
-//            dados.addRow(new Object[]{
-//                cliente.getId(),
-//                cliente.getNome(),
-//                cliente.getCpf(),                
-//                cliente.getEmail(),                
-//                cliente.getTelefone(),                                    
-//            });
-//        }
-//    }
+
+    public void montaTabela(List<Products> products) {
+        DefaultTableModel dados = (DefaultTableModel) tbProdutos.getModel();
+        dados.setRowCount(0);
+        for (Products product : products) {
+            dados.addRow(new Object[]{
+                product.getId(),
+                product.getCodigoBarras(),
+                product.getNome(),
+                product.getPreco(),
+                product.getEstoque(),});
+        }
+    }
+
+    public void listaProdutos() {
+        DAO<Products> dao = new DAO<>(Products.class);
+        List<Products> products = dao.obterTodos(5, 0);
+        montaTabela(products);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +58,7 @@ public class FormProdutos extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         panelGeral = new javax.swing.JTabbedPane();
         panelListaClientes = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCampoBuscar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbProdutos = new javax.swing.JTable();
@@ -125,14 +124,24 @@ public class FormProdutos extends javax.swing.JFrame {
 
         panelListaClientes.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(22, 22, 22));
-        jTextField1.setMargin(new java.awt.Insets(2, 10, 2, 2));
+        txtCampoBuscar.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        txtCampoBuscar.setForeground(new java.awt.Color(22, 22, 22));
+        txtCampoBuscar.setMargin(new java.awt.Insets(2, 10, 2, 2));
+        txtCampoBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCampoBuscarKeyPressed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton1.setForeground(new java.awt.Color(50, 138, 138));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_search_24px.png"))); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonBuscarProduto(evt);
+            }
+        });
 
         tbProdutos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tbProdutos.setForeground(new java.awt.Color(50, 138, 138));
@@ -141,11 +150,11 @@ public class FormProdutos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Código de Barra", "Nome", "Preço", "Qtd", "Telefone"
+                "Código", "Código de Barra", "Nome", "Preço", "Qtd"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, true, true
+                false, true, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -182,9 +191,6 @@ public class FormProdutos extends javax.swing.JFrame {
             tbProdutos.getColumnModel().getColumn(4).setMinWidth(70);
             tbProdutos.getColumnModel().getColumn(4).setPreferredWidth(50);
             tbProdutos.getColumnModel().getColumn(4).setMaxWidth(100);
-            tbProdutos.getColumnModel().getColumn(5).setMinWidth(100);
-            tbProdutos.getColumnModel().getColumn(5).setPreferredWidth(50);
-            tbProdutos.getColumnModel().getColumn(5).setMaxWidth(150);
         }
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -209,15 +215,14 @@ public class FormProdutos extends javax.swing.JFrame {
             .addGroup(panelListaClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelListaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelListaClientesLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCampoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addGap(0, 385, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(jButton2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelListaClientesLayout.setVerticalGroup(
             panelListaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +231,7 @@ public class FormProdutos extends javax.swing.JFrame {
                 .addGroup(panelListaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(txtCampoBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                 .addContainerGap())
@@ -234,7 +239,7 @@ public class FormProdutos extends javax.swing.JFrame {
 
         panelGeral.addTab("PRODUTOS", panelListaClientes);
 
-        jPanel1.add(panelGeral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 980, 410));
+        jPanel1.add(panelGeral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 840, 410));
 
         jLabel15.setFont(new java.awt.Font("Montserrat", 0, 11)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(102, 102, 102));
@@ -253,26 +258,13 @@ public class FormProdutos extends javax.swing.JFrame {
 
     private void tbProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProdutosMouseClicked
         // TODO add your handling code here:
-//        panelGeral.setSelectedIndex(0);
-//        new Utilitarios().limpaTela(panelDadosPessoais);
-//        ClienteDAO dao =  new ClienteDAO();
-//        Client client = dao.obterId(Integer.parseInt(tbClientes.getValueAt(tbClientes.getSelectedRow(), 0).toString()));
-//        textCodigo.setText( Integer.toString(client.getId()));
-//        textNome.setText(client.getNome());
-//        textCPF.setText(client.getCpf());
-//        textRG.setText(client.getRg());
-//        textEmail.setText(client.getEmail());
-//        textTelefone.setText(client.getTelefone());
-//        textEndereco.setText(client.getEndereco());
-//        textBairro.setText(client.getBairro());
-//        textNumero.setText(Integer.toString(client.getNumeroCasa()));
-//        textCidade.setSelectedItem(client.getCidade());
-//        textUf.setSelectedItem(client.getUf());
+        panelGeral.setSelectedIndex(0);
+        ProductDAO dao = new ProductDAO();
     }//GEN-LAST:event_tbProdutosMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-//        listarClientes();
+        listaProdutos();
     }//GEN-LAST:event_formWindowActivated
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -284,6 +276,21 @@ public class FormProdutos extends javax.swing.JFrame {
         FormNovoProduto tela = new FormNovoProduto();
         tela.setVisible(true);
     }//GEN-LAST:event_changeFormProduto
+
+    private void buttonBuscarProduto(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonBuscarProduto
+        // TODO add your handling code here:
+        ProductDAO dao = new ProductDAO();
+        List<Products> products = dao.buscarPorNome(txtCampoBuscar.getText());
+        montaTabela(products);
+
+    }//GEN-LAST:event_buttonBuscarProduto
+
+    private void txtCampoBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCampoBuscarKeyPressed
+        // TODO add your handling code here:
+        ProductDAO dao = new ProductDAO();
+        List<Products> products = dao.buscarPorNome(txtCampoBuscar.getText());
+        montaTabela(products);
+    }//GEN-LAST:event_txtCampoBuscarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -330,10 +337,10 @@ public class FormProdutos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JTabbedPane panelGeral;
     private javax.swing.JPanel panelListaClientes;
     private javax.swing.JTable tbProdutos;
+    private javax.swing.JTextField txtCampoBuscar;
     // End of variables declaration//GEN-END:variables
 
 }
