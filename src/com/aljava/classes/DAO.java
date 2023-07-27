@@ -111,6 +111,16 @@ public class DAO<E> {
         return em.createQuery(query).getResultList();
     }
 
+    public List<E> buscarPorParams(String params) {
+        if (classe == null) {
+            throw new UnsupportedOperationException("Classe Nula!");
+        }
+        return em.createQuery(
+                "select p from "+ classe.getName()+ " p where name like :keyword or barsCode LIKE :keyword", classe)
+                .setParameter("keyword", "%" + params + "%")
+                .getResultList();
+    }
+
     ;
     /*Metodo para deletar um Objetos do banco de dados.*/
     public DAO<E> delete(E entidade) {
