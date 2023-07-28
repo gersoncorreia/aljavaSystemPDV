@@ -128,6 +128,7 @@ public class FormCategoria extends javax.swing.JFrame {
         dao.abrirT().incluir(category).fecharT().fechar();
         JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!!");
         new Utilitarios().limpaTela(panelCategoria);
+        this.dispose();
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     /**

@@ -5,9 +5,7 @@
 package com.aljava.model.entities;
 
 import java.awt.Component;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -23,6 +21,9 @@ public class Utilitarios {
             
             if(component instanceof JComboBox){
                 ((JComboBox) component).setSelectedItem(null);
+            }
+            if(component instanceof JSpinner){
+                ((JSpinner) component).setValue(0);
             }
         }
     }

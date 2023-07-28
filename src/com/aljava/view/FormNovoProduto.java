@@ -214,6 +214,7 @@ public class FormNovoProduto extends javax.swing.JFrame {
         dao.abrirT().incluir(produto).fecharT().fechar();
         JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!!");
         new Utilitarios().limpaTela(panelFormProduto);
+        this.dispose();
 
     }//GEN-LAST:event_buttonSalvarProdutoActionPerformed
 

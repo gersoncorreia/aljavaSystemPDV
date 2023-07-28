@@ -116,8 +116,8 @@ public class DAO<E> {
             throw new UnsupportedOperationException("Classe Nula!");
         }
         return em.createQuery(
-                "select p from "+ classe.getName()+ " p where name like :keyword or barsCode LIKE :keyword", classe)
-                .setParameter("keyword", "%" + params + "%")
+                "select p from "+ classe.getName()+ " p where name = :keyword OR barsCode = :keyword", classe)
+                .setParameter("keyword",params )
                 .getResultList();
     }
 
