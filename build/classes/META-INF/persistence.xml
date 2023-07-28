@@ -6,23 +6,35 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Lista de entidades -->
     <!--    <class>com.aljava.model.entities.Entries</class>
-    <class>com.aljava.model.entities.Payments</class>
-    <class>com.aljava.model.entities.Sales</class>
-    <class>com.aljava.model.entities.SaleItens</class>
-    <class>com.aljava.model.entities.Products</class>-->
+        <class>com.aljava.model.entities.Payments</class>
+        <class>com.aljava.model.entities.Sales</class>
+        <class>com.aljava.model.entities.SaleItens</class>
+        <class>com.aljava.model.entities.Products</class>-->
     <class>com.aljava.model.entities.Clients</class>
     <class>com.aljava.model.entities.Categories</class>
+    <!--    <properties>
+           Propriedades JDBC 
+          <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+          <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/db_pdv"/>
+          <property name="javax.persistence.jdbc.user" value="root"/>
+          <property name="javax.persistence.jdbc.password" value=""/>
+           Configurações específicas do Hibernate 
+          <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+          <property name="hibernate.hbm2ddl.auto" value="update"/>
+          <property name="hibernate.show_sql" value="false"/>
+          <property name="hibernate.format_sql" value="true"/>
+        </properties>-->
     <properties>
-      <!-- Propriedades JDBC -->
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/db_pdv"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.password" value=""/>
-      <!-- Configurações específicas do Hibernate -->
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
-      <property name="hibernate.hbm2ddl.auto" value="update"/>
-      <property name="hibernate.show_sql" value="false"/>
-      <property name="hibernate.format_sql" value="true"/>
-    </properties>
+            Propriedades JDBC SQLite
+            <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite::resource:data.db"/>
+            <property name="javax.persistence.jdbc.user" value=""/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            Configurações específicas do Hibernate 
+            <property name="hibernate.dialect" value="org.hibernate.dialect."/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        <property name="javax.persistence.schema-generation.database.action" value="create"/></properties>
   </persistence-unit>
 </persistence>

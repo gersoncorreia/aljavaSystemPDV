@@ -38,8 +38,6 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
         menuVendas = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -138,23 +136,6 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/configuracoes.png"))); // NOI18N
-        jMenu5.setText("Configurações");
-        jMenu5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenu5.setMargin(new java.awt.Insets(3, 10, 3, 10));
-
-        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/novo.png"))); // NOI18N
-        jMenuItem6.setText("Controle de Usuários");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem6);
-
-        jMenuBar1.add(jMenu5);
-
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sair.png"))); // NOI18N
         jMenu6.setText("Sair");
         jMenu6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -167,7 +148,7 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 828, Short.MAX_VALUE)
+            .addGap(0, 649, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,10 +170,6 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
         FormClient tela = new FormClient();
         tela.setVisible(true);
     }//GEN-LAST:event_menuClientesActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void FrmVendas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmVendas
         // TODO add your handling code here:
@@ -250,13 +227,11 @@ public class FrmPainelPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem menuClientes;
     private javax.swing.JMenuItem menuFornecedores;
