@@ -284,22 +284,23 @@ public class FormVendas extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAddItemVendaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelAddItemVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelAddItemVendaLayout.createSequentialGroup()
-                                .addComponent(txtCodigoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtPrecoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinnerQuantidade))
+                        .addGroup(panelAddItemVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelAddItemVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelAddItemVendaLayout.createSequentialGroup()
+                                    .addComponent(txtCodigoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10, 10, 10)
+                                    .addComponent(txtPrecoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jSpinnerQuantidade)))
                             .addGroup(panelAddItemVendaLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(buttonAdicionar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonFinalizarVenda)
+                                .addComponent(buttonCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonCancelar)))
-                        .addGap(137, 137, 137))))
+                                .addComponent(buttonFinalizarVenda)))
+                        .addGap(207, 207, 207))))
         );
         panelAddItemVendaLayout.setVerticalGroup(
             panelAddItemVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,6 +391,10 @@ public class FormVendas extends javax.swing.JFrame {
 
     private void buttonFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarVendaActionPerformed
         // TODO add your handling code here:
+        FormPagamento pagamento = new FormPagamento();
+        pagamento.txtTotalVendaPagamento.setText(String.valueOf(txtTotalVenda.getText()));
+        pagamento.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_buttonFinalizarVendaActionPerformed
 
     private void buscarProduto(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarProduto

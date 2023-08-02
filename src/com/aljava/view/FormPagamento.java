@@ -33,12 +33,12 @@ public class FormPagamento extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        buttonCancelar1 = new javax.swing.JButton();
-        textCelular = new javax.swing.JFormattedTextField();
-        textCelular1 = new javax.swing.JFormattedTextField();
-        textCelular2 = new javax.swing.JFormattedTextField();
-        textCelular3 = new javax.swing.JFormattedTextField();
-        textCelular4 = new javax.swing.JFormattedTextField();
+        buttonFecharVenda = new javax.swing.JButton();
+        txtCartao = new javax.swing.JFormattedTextField();
+        txtPix = new javax.swing.JFormattedTextField();
+        txtTroco = new javax.swing.JFormattedTextField();
+        txtTotalVendaPagamento = new javax.swing.JFormattedTextField();
+        txtDinheiro = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pagamentos");
@@ -81,39 +81,44 @@ public class FormPagamento extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setText("CARTÃO:");
 
-        buttonCancelar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        buttonCancelar1.setForeground(new java.awt.Color(50, 138, 138));
-        buttonCancelar1.setText("Finalizar Venda");
-        buttonCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        buttonFecharVenda.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttonFecharVenda.setForeground(new java.awt.Color(50, 138, 138));
+        buttonFecharVenda.setText("Finalizar Venda");
+        buttonFecharVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCancelar1ActionPerformed(evt);
+                buttonFecharVendaActionPerformed(evt);
             }
         });
 
-        textCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        textCelular.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        textCelular.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        textCelular.setMargin(new java.awt.Insets(2, 10, 2, 2));
+        txtCartao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtCartao.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCartao.setText("0");
+        txtCartao.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtCartao.setMargin(new java.awt.Insets(2, 10, 2, 2));
 
-        textCelular1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        textCelular1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        textCelular1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        textCelular1.setMargin(new java.awt.Insets(2, 10, 2, 2));
+        txtPix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtPix.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtPix.setText("0");
+        txtPix.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtPix.setMargin(new java.awt.Insets(2, 10, 2, 2));
 
-        textCelular2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        textCelular2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        textCelular2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        textCelular2.setMargin(new java.awt.Insets(2, 10, 2, 2));
+        txtTroco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtTroco.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTroco.setText("0");
+        txtTroco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtTroco.setMargin(new java.awt.Insets(2, 10, 2, 2));
 
-        textCelular3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        textCelular3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        textCelular3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        textCelular3.setMargin(new java.awt.Insets(2, 10, 2, 2));
+        txtTotalVendaPagamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtTotalVendaPagamento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTotalVendaPagamento.setText("0");
+        txtTotalVendaPagamento.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtTotalVendaPagamento.setMargin(new java.awt.Insets(2, 10, 2, 2));
 
-        textCelular4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        textCelular4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        textCelular4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        textCelular4.setMargin(new java.awt.Insets(2, 10, 2, 2));
+        txtDinheiro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtDinheiro.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtDinheiro.setText("0");
+        txtDinheiro.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtDinheiro.setMargin(new java.awt.Insets(2, 10, 2, 2));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +128,7 @@ public class FormPagamento extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonCancelar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonFecharVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -133,13 +138,13 @@ public class FormPagamento extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textCelular3, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(textCelular2, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(textCelular1, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(txtTotalVendaPagamento, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(txtTroco, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(txtPix, javax.swing.GroupLayout.Alignment.CENTER)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textCelular4, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(38, 38, 38))
         );
@@ -150,25 +155,25 @@ public class FormPagamento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(textCelular4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(textCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textCelular1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPix, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(textCelular2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTroco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(textCelular3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotalVendaPagamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonCancelar1)
+                .addComponent(buttonFecharVenda)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -176,9 +181,9 @@ public class FormPagamento extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelar1ActionPerformed
+    private void buttonFecharVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharVendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonCancelar1ActionPerformed
+    }//GEN-LAST:event_buttonFecharVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,7 +222,7 @@ public class FormPagamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonCancelar1;
+    private javax.swing.JButton buttonFecharVenda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -225,10 +230,10 @@ public class FormPagamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JFormattedTextField textCelular;
-    private javax.swing.JFormattedTextField textCelular1;
-    private javax.swing.JFormattedTextField textCelular2;
-    private javax.swing.JFormattedTextField textCelular3;
-    private javax.swing.JFormattedTextField textCelular4;
+    private javax.swing.JFormattedTextField txtCartao;
+    private javax.swing.JFormattedTextField txtDinheiro;
+    private javax.swing.JFormattedTextField txtPix;
+    public javax.swing.JFormattedTextField txtTotalVendaPagamento;
+    private javax.swing.JFormattedTextField txtTroco;
     // End of variables declaration//GEN-END:variables
 }

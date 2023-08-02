@@ -34,8 +34,8 @@ public class DAO<E> {
     static {
         try {
             emf = Persistence.createEntityManagerFactory("agendAqui");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println(e.getCause());
         }
     }
 
