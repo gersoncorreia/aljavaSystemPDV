@@ -5,9 +5,20 @@
 package com.aljava.view;
 
 import com.aljava.classes.DAO;
+import com.aljava.classes.SalesDAO;
 import com.aljava.model.entities.Products;
+import com.aljava.model.entities.Sales;
 import com.aljava.model.entities.Utilitarios;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +31,31 @@ public class FormVendas extends javax.swing.JFrame {
     private JTextField searchField;
     double totalVenda, preco, subTotal;
     int qtd;
+
+    private Date dataAtual() {
+        LocalDate dataAtual = LocalDate.now();
+        DateTimeFormatter formatoAmericano = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        SimpleDateFormat dataAmericano = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date dataAtualMySQL = dataAmericano.parse(dataAtual.format(formatoAmericano));
+            return dataAtualMySQL;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private double totalVendaDouble(String valorTotalVenda) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.US);
+        double valorTotal = 0;
+        try {
+            valorTotal = numberFormat.parse(valorTotalVenda).doubleValue();
+            return valorTotal;
+        } catch (ParseException ex) {
+            Logger.getLogger(FormNovoProduto.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
 
     public void buscarProduto() {
         String termo = txtParametroBusca.getText();
@@ -49,7 +85,7 @@ public class FormVendas extends javax.swing.JFrame {
             txtPrecoUnitario.getText(),
             subTotal,});
 
-        txtTotalVenda.setText(String.valueOf(totalVenda));
+        txtTotalVenda.setText(String.valueOf(totalVenda).replace(",", "").replace(".", ","));
 
     }
 
@@ -391,10 +427,23 @@ public class FormVendas extends javax.swing.JFrame {
 
     private void buttonFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarVendaActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel carrinho = (DefaultTableModel) tbItensVenda.getModel();
+        String totalVendaFormatado = txtTotalVenda.getText().replace(".", "").replace(",", ".");
+
+        Sales sale = new Sales(totalVendaDouble(totalVendaFormatado), dataAtual(), dataAtual());
+        
+        SalesDAO saleDao = new SalesDAO();
+        saleDao.abrirT().incluir(sale).fecharT().fechar();
+        
+        Object objSale = saleDao;
+
+//        JOptionPane.showMessageDialog(null, objSale);
         FormPagamento pagamento = new FormPagamento();
         pagamento.txtTotalVendaPagamento.setText(String.valueOf(txtTotalVenda.getText()));
+        pagamento.itemsVendas = carrinho;
         pagamento.setVisible(true);
         this.dispose();
+
     }//GEN-LAST:event_buttonFinalizarVendaActionPerformed
 
     private void buscarProduto(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarProduto

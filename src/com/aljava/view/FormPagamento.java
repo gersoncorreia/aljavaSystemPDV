@@ -4,11 +4,15 @@
  */
 package com.aljava.view;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author SEFIN
  */
 public class FormPagamento extends javax.swing.JFrame {
+
+    DefaultTableModel itemsVendas;
 
     /**
      * Creates new form FormPagamento
@@ -183,6 +187,11 @@ public class FormPagamento extends javax.swing.JFrame {
 
     private void buttonFecharVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharVendaActionPerformed
         // TODO add your handling code here:
+        for (int i = 0; i < itemsVendas.getRowCount(); i++) {
+            itemsVendas.getValueAt(i, 0);
+        }
+        new FormVendas().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_buttonFecharVendaActionPerformed
 
     /**

@@ -23,20 +23,21 @@ public class Sales implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "amount", length = 11, nullable = false)
-    private int quantidade;
+
+    @Column(name = "created_at", nullable = false)
+    private Date dataCadastro;
+    
+    @Column(name="total_sale", columnDefinition="Decimal(10,2)")
+    private double totalVenda;
 
     @Column(name = "date_sale", nullable = false)
     private Date saleDate;
 
-    @Column(name = "created_at", nullable = false)
-    private Date dataCadastro;
-
     public Sales() {
     }
 
-    public Sales(int quantidade, Date saleDate, Date dataCadastro) {
-        this.quantidade = quantidade;
+    public Sales(double totalVenda, Date saleDate, Date dataCadastro) {
+        this.totalVenda = totalVenda;
         this.saleDate = saleDate;
         this.dataCadastro = dataCadastro;
     }
@@ -65,11 +66,11 @@ public class Sales implements Serializable {
         this.dataCadastro = dataCadastro;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public double getTotalVenda() {
+        return totalVenda;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setTotalVenda(double totalVenda) {
+        this.totalVenda = totalVenda;
     }
 }
