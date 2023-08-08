@@ -72,18 +72,15 @@ public class FormVendas extends javax.swing.JFrame {
 
     public void montaTabela() {
         DefaultTableModel dados = (DefaultTableModel) tbItensVenda.getModel();
-        qtd = Integer.parseInt(jSpinnerQuantidade.getValue().toString());
-        preco = Double.parseDouble(txtPrecoUnitario.getText());
-        subTotal = qtd * preco;
-        totalVenda += subTotal;
 
-        double subTotal = Double.parseDouble(txtPrecoUnitario.getText().toString()) * Integer.parseInt(jSpinnerQuantidade.getValue().toString());
+        double subTot = (Double.parseDouble(txtPrecoUnitario.getText()) * Integer.parseInt(jSpinnerQuantidade.getValue().toString()));
+        totalVenda += subTot;
         dados.addRow(new Object[]{
             txtCodigoBarra.getText(),
             txtNomeProduto.getText(),
             jSpinnerQuantidade.getValue(),
             txtPrecoUnitario.getText(),
-            subTotal,});
+            subTot,});
 
         txtTotalVenda.setText(String.valueOf(totalVenda).replace(",", "").replace(".", ","));
 
@@ -429,18 +426,17 @@ public class FormVendas extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel carrinho = (DefaultTableModel) tbItensVenda.getModel();
         String totalVendaFormatado = txtTotalVenda.getText().replace(".", "").replace(",", ".");
-
+        
+        SalesDAO dao = new SalesDAO();
         Sales sale = new Sales(totalVendaDouble(totalVendaFormatado), dataAtual(), dataAtual());
-        
-        SalesDAO saleDao = new SalesDAO();
-        saleDao.abrirT().incluir(sale).fecharT().fechar();
-        
-        Object objSale = saleDao;
-
-//        JOptionPane.showMessageDialog(null, objSale);
+        dao.abrirT().incluir(sale).fecharT().fechar();
+//       Continuar a partir daqui!
+        for (int i = 0; i < carrinho.getRowCount(); i++) {
+            carrinho.getValueAt(i, 0);
+        }
+//        JOptionPane.showMessageDialog(null, sale.getId());
         FormPagamento pagamento = new FormPagamento();
         pagamento.txtTotalVendaPagamento.setText(String.valueOf(txtTotalVenda.getText()));
-        pagamento.itemsVendas = carrinho;
         pagamento.setVisible(true);
         this.dispose();
 
