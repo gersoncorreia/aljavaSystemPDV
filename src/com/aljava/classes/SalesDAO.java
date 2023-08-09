@@ -15,4 +15,5 @@ public class SalesDAO extends DAO<Sales> {
     public SalesDAO() {
         super(Sales.class);
     }
+    
 }

@@ -5,8 +5,11 @@
 package com.aljava.view;
 
 import com.aljava.classes.DAO;
+import com.aljava.classes.SaleItensDAO;
 import com.aljava.classes.SalesDAO;
+import com.aljava.controllers.ItemVendasController;
 import com.aljava.model.entities.Products;
+import com.aljava.model.entities.SaleItens;
 import com.aljava.model.entities.Sales;
 import com.aljava.model.entities.Utilitarios;
 import java.text.NumberFormat;
@@ -14,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -62,6 +66,7 @@ public class FormVendas extends javax.swing.JFrame {
         DAO<Products> dao = new DAO<>(Products.class);
         List<Products> products = dao.buscarPorParams(termo);
         for (Products product : products) {
+            txtIdProduto.setText(String.valueOf(product.getId()));
             txtCodigoBarra.setText(product.getCodigoBarras());
             txtNomeProduto.setText(product.getNome());
             txtPrecoUnitario.setText(String.valueOf(product.getPreco()));
@@ -76,6 +81,7 @@ public class FormVendas extends javax.swing.JFrame {
         double subTot = (Double.parseDouble(txtPrecoUnitario.getText()) * Integer.parseInt(jSpinnerQuantidade.getValue().toString()));
         totalVenda += subTot;
         dados.addRow(new Object[]{
+            txtIdProduto.getText(),
             txtCodigoBarra.getText(),
             txtNomeProduto.getText(),
             jSpinnerQuantidade.getValue(),
@@ -121,6 +127,7 @@ public class FormVendas extends javax.swing.JFrame {
         buttonFinalizarVenda = new javax.swing.JButton();
         buttonAdicionar = new javax.swing.JButton();
         jSpinnerQuantidade = new javax.swing.JSpinner();
+        txtIdProduto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbItensVenda = new javax.swing.JTable();
 
@@ -305,6 +312,12 @@ public class FormVendas extends javax.swing.JFrame {
         jSpinnerQuantidade.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jSpinnerQuantidade.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quantidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12))); // NOI18N
 
+        txtIdProduto.setEditable(false);
+        txtIdProduto.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdProduto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtIdProduto.setForeground(new java.awt.Color(255, 255, 255));
+        txtIdProduto.setBorder(null);
+
         javax.swing.GroupLayout panelAddItemVendaLayout = new javax.swing.GroupLayout(panelAddItemVenda);
         panelAddItemVenda.setLayout(panelAddItemVendaLayout);
         panelAddItemVendaLayout.setHorizontalGroup(
@@ -321,8 +334,9 @@ public class FormVendas extends javax.swing.JFrame {
                             .addGroup(panelAddItemVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(panelAddItemVendaLayout.createSequentialGroup()
+                                    .addGap(4, 4, 4)
                                     .addComponent(txtCodigoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(10, 10, 10)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtPrecoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jSpinnerQuantidade)))
@@ -333,21 +347,26 @@ public class FormVendas extends javax.swing.JFrame {
                                 .addComponent(buttonCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonFinalizarVenda)))
-                        .addGap(207, 207, 207))))
+                        .addGap(207, 207, 207))
+                    .addGroup(panelAddItemVendaLayout.createSequentialGroup()
+                        .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         panelAddItemVendaLayout.setVerticalGroup(
             panelAddItemVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAddItemVendaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtParametroBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAddItemVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPrecoUnitario)
-                    .addComponent(txtCodigoBarra)
-                    .addComponent(jSpinnerQuantidade, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
-                .addGap(56, 56, 56)
+                    .addComponent(txtCodigoBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerQuantidade)
+                    .addComponent(txtPrecoUnitario, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(panelAddItemVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,11 +383,11 @@ public class FormVendas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Produto", "Qtd", "Preço", "Subtotal"
+                "ID", "Código", "Produto", "Qtd", "Preço", "Subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -380,16 +399,19 @@ public class FormVendas extends javax.swing.JFrame {
         tbItensVenda.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tbItensVenda);
         if (tbItensVenda.getColumnModel().getColumnCount() > 0) {
-            tbItensVenda.getColumnModel().getColumn(0).setMinWidth(60);
-            tbItensVenda.getColumnModel().getColumn(0).setMaxWidth(90);
-            tbItensVenda.getColumnModel().getColumn(1).setMinWidth(150);
-            tbItensVenda.getColumnModel().getColumn(1).setMaxWidth(300);
-            tbItensVenda.getColumnModel().getColumn(2).setMinWidth(45);
-            tbItensVenda.getColumnModel().getColumn(2).setMaxWidth(80);
-            tbItensVenda.getColumnModel().getColumn(3).setMinWidth(90);
-            tbItensVenda.getColumnModel().getColumn(3).setMaxWidth(120);
+            tbItensVenda.getColumnModel().getColumn(0).setMinWidth(45);
+            tbItensVenda.getColumnModel().getColumn(0).setPreferredWidth(45);
+            tbItensVenda.getColumnModel().getColumn(0).setMaxWidth(60);
+            tbItensVenda.getColumnModel().getColumn(1).setMinWidth(60);
+            tbItensVenda.getColumnModel().getColumn(1).setMaxWidth(90);
+            tbItensVenda.getColumnModel().getColumn(2).setMinWidth(150);
+            tbItensVenda.getColumnModel().getColumn(2).setMaxWidth(300);
+            tbItensVenda.getColumnModel().getColumn(3).setMinWidth(45);
+            tbItensVenda.getColumnModel().getColumn(3).setMaxWidth(80);
             tbItensVenda.getColumnModel().getColumn(4).setMinWidth(90);
             tbItensVenda.getColumnModel().getColumn(4).setMaxWidth(120);
+            tbItensVenda.getColumnModel().getColumn(5).setMinWidth(90);
+            tbItensVenda.getColumnModel().getColumn(5).setMaxWidth(120);
         }
 
         panelGeralVenda.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 600, 480));
@@ -426,24 +448,49 @@ public class FormVendas extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel carrinho = (DefaultTableModel) tbItensVenda.getModel();
         String totalVendaFormatado = txtTotalVenda.getText().replace(".", "").replace(",", ".");
-        
+
+        DAO<Products> daoProduct = new DAO<>(Products.class);
+        Products produto = new Products();
+
         Sales sale = new Sales(totalVendaDouble(totalVendaFormatado), dataAtual(), dataAtual());
-        
-        SalesDAO dao = new SalesDAO();
-        dao.abrirT().incluir(sale).fecharT().fechar();
+        SaleItens saleItems = new SaleItens();
+
+        SalesDAO daoSales = new SalesDAO();
+        SaleItensDAO daoSaleItens = new SaleItensDAO();
+
+        ItemVendasController itemController = new ItemVendasController();
+
+        daoSales.abrirT().incluir(sale).fecharT().fechar();
+        ArrayList<SaleItens> objItemVenda = new ArrayList<>();
 
         for (int i = 0; i < carrinho.getRowCount(); i++) {
-            carrinho.getValueAt(i, 0);
-            carrinho.getValueAt(i, 1);
-            carrinho.getValueAt(i, 2);
-            carrinho.getValueAt(i, 3);
-            carrinho.getValueAt(i, 4);
+            List<Products> products = daoProduct.buscarPorParams(carrinho.getValueAt(i, 0).toString());
+            for (Products product : products) {
+                produto = daoProduct.obterId(product.getId());
+                saleItems.setProducts(product);
+                saleItems.setQuantidade(Integer.parseInt(carrinho.getValueAt(i, 2).toString()));
+                saleItems.setSales(sale);
+                saleItems.setDataCadastro(dataAtual());
+                objItemVenda.add(saleItems);
+            }
         }
-//        JOptionPane.showMessageDialog(null, sale.getId());
-        FormPagamento pagamento = new FormPagamento();
-        pagamento.txtTotalVendaPagamento.setText(String.valueOf(txtTotalVenda.getText()));
-        pagamento.setVisible(true);
-        this.dispose();
+//continuar daqui, tentativas para cadastrar os itens da venda. fazer revisão.
+                System.out.println(saleItems.getId());
+        for (SaleItens saleItens : objItemVenda) {
+            try {
+                itemController.inserirItemVenda(saleItens);
+            } catch (Exception e) {
+                
+            }
+//            daoSaleItens.abrirT().incluir(saleItens).fecharT().fechar();
+        }
+
+
+        JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+//        FormPagamento pagamento = new FormPagamento();
+//        pagamento.txtTotalVendaPagamento.setText(String.valueOf(txtTotalVenda.getText()));
+//        pagamento.setVisible(true);
+//        this.dispose();
 
     }//GEN-LAST:event_buttonFinalizarVendaActionPerformed
 
@@ -518,6 +565,7 @@ public class FormVendas extends javax.swing.JFrame {
     private javax.swing.JPanel panelGeralVenda;
     private javax.swing.JTable tbItensVenda;
     private javax.swing.JTextField txtCodigoBarra;
+    private javax.swing.JTextField txtIdProduto;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtParametroBusca;
     private javax.swing.JTextField txtPrecoUnitario;
