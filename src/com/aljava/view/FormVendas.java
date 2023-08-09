@@ -458,33 +458,20 @@ public class FormVendas extends javax.swing.JFrame {
         SalesDAO daoSales = new SalesDAO();
         SaleItensDAO daoSaleItens = new SaleItensDAO();
 
-        ItemVendasController itemController = new ItemVendasController();
-
         daoSales.abrirT().incluir(sale).fecharT().fechar();
-        ArrayList<SaleItens> objItemVenda = new ArrayList<>();
 
         for (int i = 0; i < carrinho.getRowCount(); i++) {
             List<Products> products = daoProduct.buscarPorParams(carrinho.getValueAt(i, 0).toString());
             for (Products product : products) {
-                produto = daoProduct.obterId(product.getId());
-                saleItems.setProducts(product);
-                saleItems.setQuantidade(Integer.parseInt(carrinho.getValueAt(i, 2).toString()));
-                saleItems.setSales(sale);
-                saleItems.setDataCadastro(dataAtual());
-                objItemVenda.add(saleItems);
+                produto = product;
             }
-        }
-//continuar daqui, tentativas para cadastrar os itens da venda. fazer revisão.
-                System.out.println(saleItems.getId());
-        for (SaleItens saleItens : objItemVenda) {
-            try {
-                itemController.inserirItemVenda(saleItens);
-            } catch (Exception e) {
-                
-            }
-//            daoSaleItens.abrirT().incluir(saleItens).fecharT().fechar();
-        }
+            
+            saleItems.setProducts(produto);
+            saleItems.setQuantidade(Integer.parseInt(carrinho.getValueAt(i, 2).toString()));
+            saleItems.setDataCadastro(dataAtual());
+            sale.adicionarItem(saleItems);
 
+        }
 
         JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
 //        FormPagamento pagamento = new FormPagamento();

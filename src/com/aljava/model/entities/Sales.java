@@ -5,12 +5,14 @@
 package com.aljava.model.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,15 +25,17 @@ public class Sales implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
     @Column(name = "created_at", nullable = false)
     private Date dataCadastro;
-    
-    @Column(name="total_sale", columnDefinition="Decimal(10,2)")
+
+    @Column(name = "total_sale", columnDefinition = "Decimal(10,2)")
     private double totalVenda;
 
     @Column(name = "date_sale", nullable = false)
     private Date saleDate;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SaleItens> itens = new ArrayList<>();
 
     public Sales() {
     }
@@ -72,5 +76,11 @@ public class Sales implements Serializable {
 
     public void setTotalVenda(double totalVenda) {
         this.totalVenda = totalVenda;
+    }
+
+    // Métodos para adicionar e remover itens
+    public void adicionarItem(SaleItens item) {
+        item.setSales(this);
+        itens.add(item);
     }
 }
