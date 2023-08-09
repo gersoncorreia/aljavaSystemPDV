@@ -12,7 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -25,11 +25,11 @@ public class SaleItens implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "venda_id")
     private Sales sales;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "product_id", unique = true)
     private Products products;
 
@@ -45,12 +45,11 @@ public class SaleItens implements Serializable {
     public SaleItens() {
     }
 
-    public SaleItens(Sales sales, Products products, int quantidade, double precoUnitario, Date dataCadastro) {
-        this.sales = sales;
-        this.products = products;
-        this.quantidade = quantidade;
-        this.precoUnitario = precoUnitario;
-        this.dataCadastro = dataCadastro;
+    public SaleItens(Sales sales, Products products, int quantidade, Date dataCadastro) {
+        this.setSales(sales);
+        this.setProducts(products);
+        this.setQuantidade(quantidade);
+        this.setDataCadastro(dataCadastro);
     }
 
     public int getId() {
@@ -75,6 +74,9 @@ public class SaleItens implements Serializable {
 
     public void setProducts(Products products) {
         this.products = products;
+        if(products != null && this.precoUnitario == 0){
+            this.setPrecoUnitario(products.getPreco());
+        }
     }
 
     public int getQuantidade() {

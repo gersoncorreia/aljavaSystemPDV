@@ -427,12 +427,17 @@ public class FormVendas extends javax.swing.JFrame {
         DefaultTableModel carrinho = (DefaultTableModel) tbItensVenda.getModel();
         String totalVendaFormatado = txtTotalVenda.getText().replace(".", "").replace(",", ".");
         
-        SalesDAO dao = new SalesDAO();
         Sales sale = new Sales(totalVendaDouble(totalVendaFormatado), dataAtual(), dataAtual());
+        
+        SalesDAO dao = new SalesDAO();
         dao.abrirT().incluir(sale).fecharT().fechar();
-//       Continuar a partir daqui!
+
         for (int i = 0; i < carrinho.getRowCount(); i++) {
             carrinho.getValueAt(i, 0);
+            carrinho.getValueAt(i, 1);
+            carrinho.getValueAt(i, 2);
+            carrinho.getValueAt(i, 3);
+            carrinho.getValueAt(i, 4);
         }
 //        JOptionPane.showMessageDialog(null, sale.getId());
         FormPagamento pagamento = new FormPagamento();
