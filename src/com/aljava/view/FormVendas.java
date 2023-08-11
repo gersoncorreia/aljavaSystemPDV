@@ -5,6 +5,7 @@
 package com.aljava.view;
 
 import com.aljava.classes.DAO;
+import com.aljava.classes.ProductDAO;
 import com.aljava.classes.SaleItensDAO;
 import com.aljava.classes.SalesDAO;
 import com.aljava.controllers.ItemVendasController;
@@ -449,35 +450,27 @@ public class FormVendas extends javax.swing.JFrame {
         DefaultTableModel carrinho = (DefaultTableModel) tbItensVenda.getModel();
         String totalVendaFormatado = txtTotalVenda.getText().replace(".", "").replace(",", ".");
 
-        DAO<Products> daoProduct = new DAO<>(Products.class);
         Products produto = new Products();
-
         Sales sale = new Sales(totalVendaDouble(totalVendaFormatado), dataAtual(), dataAtual());
-        SaleItens saleItems = new SaleItens();
-
+     
         SalesDAO daoSales = new SalesDAO();
+        ProductDAO daoProduct = new ProductDAO();
         SaleItensDAO daoSaleItens = new SaleItensDAO();
-
-        daoSales.abrirT().incluir(sale).fecharT().fechar();
-
+        
         for (int i = 0; i < carrinho.getRowCount(); i++) {
-            List<Products> products = daoProduct.buscarPorParams(carrinho.getValueAt(i, 0).toString());
-            for (Products product : products) {
-                produto = product;
-            }
-            
-            saleItems.setProducts(produto);
-            saleItems.setQuantidade(Integer.parseInt(carrinho.getValueAt(i, 2).toString()));
+            Products product = daoProduct.obterId(Integer.parseInt(carrinho.getValueAt(i, 0).toString()));
+            SaleItens saleItems = new SaleItens();
+            saleItems.setProducts(product);
+            saleItems.setQuantidade(Integer.parseInt(carrinho.getValueAt(i, 3).toString()));
             saleItems.setDataCadastro(dataAtual());
             sale.adicionarItem(saleItems);
-
         }
-
-        JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-//        FormPagamento pagamento = new FormPagamento();
-//        pagamento.txtTotalVendaPagamento.setText(String.valueOf(txtTotalVenda.getText()));
-//        pagamento.setVisible(true);
-//        this.dispose();
+        daoSales.abrirT().atualizar(sale).fecharT().fechar();
+//        JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+        FormPagamento pagamento = new FormPagamento();
+        pagamento.txtTotalVendaPagamento.setText(String.valueOf(txtTotalVenda.getText()));
+        pagamento.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_buttonFinalizarVendaActionPerformed
 

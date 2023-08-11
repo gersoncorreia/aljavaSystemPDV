@@ -5,12 +5,16 @@
 package com.aljava.model.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -30,10 +34,11 @@ public class Products implements Serializable {
     @Column(name = "name", length = 100, nullable = true)
     private String nome;
 
-    @Column(name="price", columnDefinition="Decimal(10,2)")
+    @Column(name = "price", columnDefinition = "Decimal(10,2)")
     private double preco;
-    
-    
+
+//    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private SaleItens itens = new SaleItens();
 
     @Column(name = "stock", length = 11, nullable = true)
     private int estoque;
@@ -100,5 +105,13 @@ public class Products implements Serializable {
     public void setCategories(Categories categories) {
         this.categories = categories;
     }
+//
+//    public SaleItens getItens() {
+//        return itens;
+//    }
+//
+//    public void setItens(SaleItens itens) {
+//        this.itens = itens;
+//    }
 
 }

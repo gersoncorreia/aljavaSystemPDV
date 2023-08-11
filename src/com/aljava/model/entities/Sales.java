@@ -34,7 +34,7 @@ public class Sales implements Serializable {
     @Column(name = "date_sale", nullable = false)
     private Date saleDate;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "sales", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SaleItens> itens = new ArrayList<>();
 
     public Sales() {

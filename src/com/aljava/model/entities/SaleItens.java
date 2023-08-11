@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -30,7 +31,7 @@ public class SaleItens implements Serializable {
     private Sales sales;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", unique = true)
+    @JoinColumn(name = "product_id")
     private Products products;
 
     @Column(name = "amount", length = 11, nullable = false)
