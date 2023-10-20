@@ -9,6 +9,7 @@ import com.aljava.classes.DAO;
 import com.aljava.classes.ProductDAO;
 import com.aljava.model.entities.Products;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,9 +39,14 @@ public class FormProdutos extends javax.swing.JFrame {
     }
 
     public void listaProdutos() {
-        DAO<Products> dao = new DAO<>(Products.class);
-        List<Products> products = dao.obterTodos(5, 0);
-        montaTabela(products);
+        try {
+            DAO<Products> dao = new DAO<>(Products.class);
+            List<Products> products = dao.obterTodos(5, 0);
+            montaTabela(products);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Não foram encontrados registros!!" + e.getMessage());
+        }
+
     }
 
     /**

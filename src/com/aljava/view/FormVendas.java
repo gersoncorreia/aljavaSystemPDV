@@ -125,7 +125,7 @@ public class FormVendas extends javax.swing.JFrame {
         txtPrecoUnitario = new javax.swing.JTextField();
         txtParametroBusca = new javax.swing.JTextField();
         buttonCancelar = new javax.swing.JButton();
-        buttonFinalizarVenda = new javax.swing.JButton();
+        buttonPagamento = new javax.swing.JButton();
         buttonAdicionar = new javax.swing.JButton();
         jSpinnerQuantidade = new javax.swing.JSpinner();
         txtIdProduto = new javax.swing.JTextField();
@@ -282,17 +282,17 @@ public class FormVendas extends javax.swing.JFrame {
             }
         });
 
-        buttonFinalizarVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        buttonFinalizarVenda.setForeground(new java.awt.Color(50, 138, 138));
-        buttonFinalizarVenda.setText("FINALIZAR");
-        buttonFinalizarVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonPagamento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonPagamento.setForeground(new java.awt.Color(50, 138, 138));
+        buttonPagamento.setText("FINALIZAR");
+        buttonPagamento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonFinalizarVendabuttonPagamento(evt);
+                buttonPagamentobuttonPagamento(evt);
             }
         });
-        buttonFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
+        buttonPagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonFinalizarVendaActionPerformed(evt);
+                buttonPagamentoActionPerformed(evt);
             }
         });
 
@@ -347,7 +347,7 @@ public class FormVendas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonFinalizarVenda)))
+                                .addComponent(buttonPagamento)))
                         .addGap(207, 207, 207))
                     .addGroup(panelAddItemVendaLayout.createSequentialGroup()
                         .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,7 +370,7 @@ public class FormVendas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(panelAddItemVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -441,11 +441,11 @@ public class FormVendas extends javax.swing.JFrame {
         new Utilitarios().limpaTela(panelAddItemVenda);
     }//GEN-LAST:event_buttonCancelarVenda
 
-    private void buttonFinalizarVendabuttonPagamento(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFinalizarVendabuttonPagamento
+    private void buttonPagamentobuttonPagamento(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPagamentobuttonPagamento
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonFinalizarVendabuttonPagamento
+    }//GEN-LAST:event_buttonPagamentobuttonPagamento
 
-    private void buttonFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarVendaActionPerformed
+    private void buttonPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagamentoActionPerformed
         // TODO add your handling code here:
         DefaultTableModel carrinho = (DefaultTableModel) tbItensVenda.getModel();
         String totalVendaFormatado = txtTotalVenda.getText().replace(".", "").replace(",", ".");
@@ -472,7 +472,7 @@ public class FormVendas extends javax.swing.JFrame {
         pagamento.setVisible(true);
         this.dispose();
 
-    }//GEN-LAST:event_buttonFinalizarVendaActionPerformed
+    }//GEN-LAST:event_buttonPagamentoActionPerformed
 
     private void buscarProduto(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarProduto
         // TODO add your handling code here:
@@ -530,7 +530,7 @@ public class FormVendas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdicionar;
     private javax.swing.JButton buttonCancelar;
-    private javax.swing.JButton buttonFinalizarVenda;
+    private javax.swing.JButton buttonPagamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;

@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Meus%20Documentos/Documents/NetBeansProjects/aljavaSystemPDV/src/com/aljava/model/entities/SaleItens.java</file>
-            <file>file:/D:/Meus%20Documentos/Documents/NetBeansProjects/aljavaSystemPDV/src/com/aljava/view/FormVendas.java</file>
+            <file>file:/C:/Users/SEFIN/Documents/NetBeansProjects/SystemPDV/src/com/aljava/model/entities/SaleItens.java</file>
+            <file>file:/C:/Users/SEFIN/Documents/NetBeansProjects/SystemPDV/src/com/aljava/classes/SalesDAO.java</file>
+            <file>file:/C:/Users/SEFIN/Documents/NetBeansProjects/SystemPDV/src/com/aljava/view/FormVendas.java</file>
+            <file>file:/C:/Users/SEFIN/Documents/NetBeansProjects/SystemPDV/src/com/aljava/model/entities/Sales.java</file>
+            <file>file:/C:/Users/SEFIN/Documents/NetBeansProjects/SystemPDV/src/com/aljava/view/FormLogin.java</file>
+            <file>file:/C:/Users/SEFIN/Documents/NetBeansProjects/SystemPDV/src/com/aljava/view/FormProdutos.java</file>
+            <file>file:/C:/Users/SEFIN/Documents/NetBeansProjects/SystemPDV/src/com/aljava/view/FormClient.java</file>
         </group>
     </open-files>
 </project-private>

@@ -34,17 +34,12 @@ public class FormPagamento extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        buttonFecharVenda = new javax.swing.JButton();
-        txtCartao = new javax.swing.JFormattedTextField();
-        txtPix = new javax.swing.JFormattedTextField();
-        txtTroco = new javax.swing.JFormattedTextField();
         txtTotalVendaPagamento = new javax.swing.JFormattedTextField();
-        txtDinheiro = new javax.swing.JFormattedTextField();
+        buttonFinalizarVenda1 = new javax.swing.JButton();
+        buttonPagamentoDinheiro = new javax.swing.JButton();
+        buttonPagamentoPix = new javax.swing.JButton();
+        buttonPagamentoCartão = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pagamentos");
@@ -53,66 +48,27 @@ public class FormPagamento extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Pagamentos");
+        jLabel1.setText("Pagamento");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(87, 87, 87)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(158, 158, 158))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setText("TROCO:");
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel3.setText("PIX:");
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel4.setText("DINHEIRO:");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel5.setText("TOTAL:");
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel6.setText("CARTÃO:");
-
-        buttonFecharVenda.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        buttonFecharVenda.setForeground(new java.awt.Color(50, 138, 138));
-        buttonFecharVenda.setText("Finalizar Venda");
-        buttonFecharVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonFecharVendaActionPerformed(evt);
-            }
-        });
-
-        txtCartao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        txtCartao.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtCartao.setText("0");
-        txtCartao.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtCartao.setMargin(new java.awt.Insets(2, 10, 2, 2));
-
-        txtPix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        txtPix.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtPix.setText("0");
-        txtPix.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtPix.setMargin(new java.awt.Insets(2, 10, 2, 2));
-
-        txtTroco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        txtTroco.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTroco.setText("0");
-        txtTroco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtTroco.setMargin(new java.awt.Insets(2, 10, 2, 2));
 
         txtTotalVendaPagamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         txtTotalVendaPagamento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -120,11 +76,44 @@ public class FormPagamento extends javax.swing.JFrame {
         txtTotalVendaPagamento.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtTotalVendaPagamento.setMargin(new java.awt.Insets(2, 10, 2, 2));
 
-        txtDinheiro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        txtDinheiro.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtDinheiro.setText("0");
-        txtDinheiro.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtDinheiro.setMargin(new java.awt.Insets(2, 10, 2, 2));
+        buttonFinalizarVenda1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttonFinalizarVenda1.setForeground(new java.awt.Color(50, 138, 138));
+        buttonFinalizarVenda1.setText("Finalizar Venda");
+        buttonFinalizarVenda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFinalizarVenda1ActionPerformed(evt);
+            }
+        });
+
+        buttonPagamentoDinheiro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonPagamentoDinheiro.setForeground(new java.awt.Color(50, 138, 138));
+        buttonPagamentoDinheiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/money_9648343.png"))); // NOI18N
+        buttonPagamentoDinheiro.setText("DINHEIRO");
+        buttonPagamentoDinheiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPagamentoDinheiroActionPerformed(evt);
+            }
+        });
+
+        buttonPagamentoPix.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonPagamentoPix.setForeground(new java.awt.Color(50, 138, 138));
+        buttonPagamentoPix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo pix.png"))); // NOI18N
+        buttonPagamentoPix.setText("PIX");
+        buttonPagamentoPix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPagamentoPixActionPerformed(evt);
+            }
+        });
+
+        buttonPagamentoCartão.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonPagamentoCartão.setForeground(new java.awt.Color(50, 138, 138));
+        buttonPagamentoCartão.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/credit-card_2922888.png"))); // NOI18N
+        buttonPagamentoCartão.setText("CARTÃO");
+        buttonPagamentoCartão.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPagamentoCartãoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,65 +123,56 @@ public class FormPagamento extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonFecharVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(buttonPagamentoCartão, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTotalVendaPagamento, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(txtTroco, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(txtPix, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(buttonPagamentoDinheiro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonPagamentoPix, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                    .addComponent(buttonFinalizarVenda1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTotalVendaPagamento)))
                 .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                    .addComponent(buttonPagamentoDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonPagamentoPix, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonPagamentoCartão, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPix, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtTroco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtTotalVendaPagamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonFecharVenda)
-                .addContainerGap(50, Short.MAX_VALUE))
+                    .addComponent(txtTotalVendaPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addComponent(buttonFinalizarVenda1)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonFecharVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharVendaActionPerformed
+    private void buttonFinalizarVenda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinalizarVenda1ActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_buttonFinalizarVenda1ActionPerformed
 
-        new FormVendas().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_buttonFecharVendaActionPerformed
+    private void buttonPagamentoDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagamentoDinheiroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonPagamentoDinheiroActionPerformed
+
+    private void buttonPagamentoPixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagamentoPixActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonPagamentoPixActionPerformed
+
+    private void buttonPagamentoCartãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagamentoCartãoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonPagamentoCartãoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,18 +211,13 @@ public class FormPagamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonFecharVenda;
+    private javax.swing.JButton buttonFinalizarVenda1;
+    private javax.swing.JButton buttonPagamentoCartão;
+    private javax.swing.JButton buttonPagamentoDinheiro;
+    private javax.swing.JButton buttonPagamentoPix;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JFormattedTextField txtCartao;
-    private javax.swing.JFormattedTextField txtDinheiro;
-    private javax.swing.JFormattedTextField txtPix;
     public javax.swing.JFormattedTextField txtTotalVendaPagamento;
-    private javax.swing.JFormattedTextField txtTroco;
     // End of variables declaration//GEN-END:variables
 }
